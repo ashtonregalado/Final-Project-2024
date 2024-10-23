@@ -5,17 +5,23 @@
     <link rel="stylesheet" href="src/style.css">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h1>GeniuShare</h1>
+      <nav>
+        <ul>
+          <button id="loginButton" class="button">LOG IN</button>
+          <button id="createAccountButton" class="button">SIGN UP</button>
+        </ul>
+      </nav>
+    </div>
 
-    <nav>
-      <ul>
-        <button id="loginButton" class="button">Login</button>
-        <button id="createAccountButton" class="button">Create Account</button>
-      </ul>
-    </nav>
+  
 
     <script type="module" src="src/first-page.ts"></script>
   </body>
