@@ -1,91 +1,249 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* * {
     margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffc857;
 }
 
-.login_container_style {
+h1 {
+    font-stretch: expanded;
+    font-weight: 900;
+    text-shadow: 5px 5px 0 rgba(255, 255, 255, 0.1);
+    margin-left: 4.8%;
+    color: #ffffff;
+    font-size: 3.6rem;
+    text-align: center;
+    margin-bottom: 4vh;
+    background-color: transparent;
+}
+
+#app {
+    border: 2px solid #1d3557;
+    height: 52vh;
+    width: 64vw;
+    margin-top: 20vh;
+    margin-left: 16vw;
     display: flex;
-    width: 500px;
-    height: 300px; /* Adjusted height to fit content */
-    padding: 20px; /* Added padding inside the container */
-    align-items: center;
-    justify-content: flex-start; /* Removed space between elements */
     flex-direction: column;
-    background-color: black;
-    border-radius: 10px; /* Optional: Makes the container edges rounded */
-    gap: 20px; /* Adds controlled spacing between elements */
-}
-
-.email_input_style, .password_input_style, .login_button_style {
-    width: 200px;
-    height: 40px; /* Increased input/button height for better visibility */
-    background-color: white;
-    color: black; /* Changed text color for readability */
-    padding: 5px; /* Adds internal padding */
-    border-radius: 5px; /* Optional: Adds slight rounding to inputs */
-    border: none; /* Removes the default border */
-    box-sizing: border-box; /* Include padding in width */
-}
-
-#username_input, #create-account_button {
-    border-radius: 5px; /* Optional: Adds slight rounding to inputs */
-}
-
-.password-container {
-    position: relative;
-    width: 200px; /* Match the width of the input */
-}
-
-.toggle-button {
-    position: absolute;
-    right: 10px; /* Position the button inside the input */
-    top: 50%;
-    transform: translateY(-50%);
-    background: none; /* No background for seamless look */
-    border: none; /* Removes default border */
-    cursor: pointer; /* Hand cursor on hover */
-    color: #007BFF; /* Button color */
-    font-size: 14px; /* Adjust font size */
-    height: 40px; /* Match input height */
-    padding: 0; /* No padding */
-}
-
-.icon {
-    width: 20px; /* Adjust size as needed */
-    height: auto; /* Maintain aspect ratio */
-}
-
-.login_button_style, .create-account_button {
-    cursor: pointer; /* Makes the button look clickable */
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
-}
-
-.login_button_style:hover, .create-account_button:hover {
-    background-color: #ccc; /* Light grey background on hover */
-}
-
-.log {
-    color:white
-}
-
-.button {
-    display: inline-block;
-    width:150px;
-    height: 40px;
     justify-content: center;
     align-items: center;
-    /* padding: 15px 10px; */
-    margin: 10px 0;
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
     border: none;
-    transition: background-color 0.3s;
-    cursor: pointer;
+} 
+
+button {
+    margin-left: 4%;
+    height: 6vh;
+    width: 76vw;
+    margin-top: 2vh;
+    border-radius: 1.6rem;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#loginButton {
+    margin-top: 32vh;
+    font-size: 2.8vh;
+    color: #fcc857;
+    background-color: white;
+    font-weight: bolder;
+}
+
+#loginButton:hover {
+    background-color: #ffc857;
+    color: #f6f4e6;
+}
+
+#createAccountButton {
+    font-size: 2.8vh;
+    font-weight: bold;
+    background-color: #fcc857;
+    color: #f6f4e6;
+    border: 2px solid white;
+}
+
+#createAccountButton:hover {
+    border: 2px solid #fcc857;
+    background-color: #f6f4e6;
+    color: #fcc857;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 5rem;
+        margin-left: 0;
+    }
+
+    #app {
+        height: 70vh;
+        width: 40vw;
+        margin-top: 10vh;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid black;
+    }
+
+    button {
+        margin-left: 12%;
+        width: 30vw;
+    }
+
+    #loginButton, #createAccountButton {
+        font-size: 2rem;
+    }
+}
+ */
+
+ * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+}
+
+h1 {
+    font-stretch: expanded;
+    font-weight: 900;
+    text-shadow: 5px 5px 0 rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 4vh;
+    background-color: transparent;
+}
+
+#app {
+    height: 60vh;
+    width: 52vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: #fcc857;
+    position: absolute;
+    top: 50%; /* Added */
+    left: 50%; /* Added */
+    transform: translate(-50%, -50%); /* Added */
+    border-radius: 2vh;
+} 
+
+ul {
+    background-color: transparent;
+}
+
+nav {
+    background-color: transparent;
+}
+
+button {
+    margin-left: 24%;
+    height: 6vh;
+    width: 48vw;
+    margin-top: 2vh;
+    border-radius: 1.6rem;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: transparent;
+}
+
+#loginButton {
+    font-size: 2.8vh;
+    color: #fcc857;
+    background-color: white;
+    font-weight: bolder;
+    border: 2px solid #fcc857;
+}
+
+#loginButton:hover {
+    background-color: #ffc857;
+    color: #f6f4e6;
+}
+
+#createAccountButton {
+    font-size: 2.8vh;
+    font-weight: bold;
+    background-color: #fcc857;
+    color: #ffffff;
+    border: 2px solid white;
+}
+
+#createAccountButton:hover {
+    border: 2px solid #fcc857;
+    background-color: #f6f4e6;
+    color: #fcc857;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-stretch: expanded;
+        font-weight: 900;
+        text-shadow: 5px 5px 0 rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        font-size: 3.2rem;
+        text-align: center;
+        margin-bottom: 4vh;
+        background-color: transparent;
+    }
+    
+    #app {
+        height: 60vh;
+        width: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: #fcc857;
+        position: absolute; /* Added */
+        top: 50%; /* Added */
+        left: 50%; /* Added */
+        transform: translate(-50%, -50%); /* Added */
+        border-radius: 2vh;
+    } 
+    
+    ul {
+        background-color: transparent;
+    }
+    
+    nav {
+        background-color: transparent;
+    }
+    
+    button {
+        margin-left: 24%;
+        height: 6vh;
+        width: 32vw;
+        margin-top: 2vh;
+        border-radius: 1.6rem;
+        border: 1px solid transparent;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        background-color: transparent;
+    }
+    
+    #loginButton {
+        font-size: 2.8vh;
+        color: #fcc857;
+        background-color: white;
+        font-weight: bolder;
+        border: 2px solid #fcc857;
+    }
+    
+    #loginButton:hover {
+        background-color: #ffc857;
+        color: #f6f4e6;
+    }
+    
+    #createAccountButton {
+        font-size: 2.8vh;
+        font-weight: bold;
+        background-color: #fcc857;
+        color: #ffffff;
+        border: 2px solid white;
+    }
+    
+    #createAccountButton:hover {
+        border: 2px solid #fcc857;
+        background-color: #f6f4e6;
+        color: #fcc857;
+    }
 }
