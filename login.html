@@ -11,8 +11,15 @@
     <div id="app"></div>
 
     <div class="login_container_style">
-      <input type="email" id="email_input" class="email_input_style" placeholder="Email">
-      <input type ="password" id="password_input" class="password_input_style" placeholder="Password">
+      <input type="email" id="email_input" class="email_input_style" placeholder="Email" maxlength="30">
+
+      <div class="password-container">
+        <input type="password" id="password_input" class="password_input_style" placeholder="Password" maxlength="16">
+        <button id="togglePassword" class="toggle-button">
+          <img src="src/images/show.png" alt="Show Password" id="toggleIcon" class="icon">
+        </button>
+      </div>
+      
       <button id="login_button" class="login_button_style">Login</button> 
       <p class="log">Don't have an account? <a href="create_account.html">Create one here</a></p>
     </div>

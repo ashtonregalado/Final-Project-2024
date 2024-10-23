@@ -7,6 +7,17 @@ const usernameInput = document.getElementById("username_input") as HTMLInputElem
 const emailInput = document.getElementById("email_input") as HTMLInputElement;
 const passwordInput = document.getElementById("password_input") as HTMLInputElement;
 const create_accountButton = document.getElementById("create-account_button") as HTMLButtonElement;
+const togglePassword = document.getElementById('togglePassword') as HTMLButtonElement;
+const toggleIcon = document.getElementById('toggleIcon') as HTMLImageElement;
+
+const showIcon = 'src/images/show.png'; // Path to show icon
+const hideIcon = 'src/images/hide.png'; // Path to hide icon
+
+togglePassword.addEventListener('click', function () {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    toggleIcon.src = type === 'password' ? showIcon : hideIcon; // Switch icon based on visibility
+});
 
 create_accountButton.addEventListener("click", () => {
     const username = usernameInput.value;
