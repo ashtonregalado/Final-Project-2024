@@ -32,7 +32,7 @@ body {
     box-sizing: border-box; /* Include padding in width */
 }
 
-#username_input {
+#username_input, #create-account_button {
     border-radius: 5px; /* Optional: Adds slight rounding to inputs */
 }
 
