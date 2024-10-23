@@ -26,7 +26,7 @@ body {
     height: 40px; /* Increased input/button height for better visibility */
     background-color: white;
     color: black; /* Changed text color for readability */
-    padding: 5px 40px 5px 5px; /* Adds internal padding */
+    padding: 5px; /* Adds internal padding */
     border-radius: 5px; /* Optional: Adds slight rounding to inputs */
     border: none; /* Removes the default border */
     box-sizing: border-box; /* Include padding in width */
