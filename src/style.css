@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login_container_style {
+    display: flex;
+    width: 500px;
+    height: 300px; /* Adjusted height to fit content */
+    padding: 20px; /* Added padding inside the container */
+    align-items: center;
+    justify-content: flex-start; /* Removed space between elements */
+    flex-direction: column;
+    background-color: black;
+    border-radius: 10px; /* Optional: Makes the container edges rounded */
+    gap: 20px; /* Adds controlled spacing between elements */
+}
+
+.email_input_style, .password_input_style, .login_button_style {
+    width: 200px;
+    height: 40px; /* Increased input/button height for better visibility */
+    background-color: white;
+    color: black; /* Changed text color for readability */
+    padding: 5px; /* Adds internal padding */
+    border-radius: 5px; /* Optional: Adds slight rounding to inputs */
+    border: none; /* Removes the default border */
+}
+
+.login_button_style {
+    cursor: pointer; /* Makes the button look clickable */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.login_button_style:hover {
+    background-color: #ccc; /* Light grey background on hover */
+}
+
+.log {
+    color:white
+}
+
+.button {
+    display: inline-block;
+    width:150px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    /* padding: 15px 10px; */
+    margin: 10px 0;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
