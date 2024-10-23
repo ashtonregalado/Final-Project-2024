@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/login_signup_style.css">
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
@@ -11,6 +11,7 @@
     <div id="app"></div>
 
     <div class="login_container_style">
+      <h1 class="large_title">GeniuShare</h1>
       <input type="text" id="username_input" class="username_input_type" placeholder="Username" maxlength="15">
       <input type="email" id="email_input" class="email_input_style" placeholder="Email" maxlength="30">
       
@@ -20,9 +21,10 @@
           <img src="src/images/show.png" alt="Show Password" id="toggleIcon" class="icon">
         </button>
       </div>
-      
-      <button id="create-account_button" class="create-account_button">Create</button>
-      <p class="log">Already have an account? <a href="login.html">Login here</a></p>
+
+      <button class="login_button_style">Sign up</button>
+
+      <p class="log">Already have an account? <a href="login.html" class="redirect_link">Login here</a></p>
     </div>
     
     <script type="module" src="src/create_account-page.ts"></script>
