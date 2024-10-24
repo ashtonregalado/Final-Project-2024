@@ -6,7 +6,7 @@ import { User, users, saveUsers } from "./useraccounts";
 const usernameInput = document.getElementById("username_input") as HTMLInputElement;
 const emailInput = document.getElementById("email_input") as HTMLInputElement;
 const passwordInput = document.getElementById("password_input") as HTMLInputElement;
-const create_accountButton = document.getElementById("create-account_button") as HTMLButtonElement;
+const signupButton = document.getElementById("signup_button") as HTMLButtonElement;
 const togglePassword = document.getElementById('togglePassword') as HTMLButtonElement;
 const toggleIcon = document.getElementById('toggleIcon') as HTMLImageElement;
 
@@ -19,13 +19,14 @@ togglePassword.addEventListener('click', function () {
     toggleIcon.src = type === 'password' ? showIcon : hideIcon; // Switch icon based on visibility
 });
 
-create_accountButton.addEventListener("click", () => {
+signupButton.addEventListener("click", () => {
     const username = usernameInput.value;
     const email = emailInput.value;
     const password = passwordInput.value;
 
     if (username === "" || email === "" || password === "") {
         alert("Please fill in all the fields")
+        return;
     }
 
     const emailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,7 +39,7 @@ create_accountButton.addEventListener("click", () => {
     const existinguser = users.find((user) => user.Email)
 
     if (existinguser?.Email === email) {
-        alert("Account already exist")
+        alert("Email already in use")
         usernameInput.value = "";
         emailInput.value = "";
         passwordInput.value = "";

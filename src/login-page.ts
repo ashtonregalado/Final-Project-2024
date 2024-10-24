@@ -43,7 +43,7 @@ loginButton.addEventListener("click", () => {
             emailInput.value = "";
             passwordInput.value = "";
         } else {
-            alert("Incorrect ")
+            alert("Incorrect Password")
             passwordInput.value = "";
         }
 
