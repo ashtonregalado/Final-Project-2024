@@ -1,6 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Montserrat%3Awght%40400%3B700%3B900&display=swap&fbclid=IwY2xjawGFqktleHRuA2FlbQIxMAABHYEuJLWre1wYVUykFCthHvHTmN5_ZfwBWKC8ENTuNsEJw3KjK2EIZ0GvgQ_aem_fTeFfMbWAb9Q-0tWl8L4cw);
-
-
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap);
 
 body {
     font-family: Arial, sans-serif;
@@ -15,79 +13,76 @@ body {
 .login_container_style {
     display: flex;
     width: 500px;
-    height: 400px; /* Adjusted height to fit content */
-    padding: 20px; /* Added padding inside the container */
+    height: 400px;
+    padding: 20px;
     align-items: center;
-    justify-content: flex-end; /* Removed space between elements */
+    justify-content: flex-end;
     flex-direction: column;
     background-color: #FFC857;
-    border-radius: 10px; /* Optional: Makes the container edges rounded */
-    gap: 20px; /* Adds controlled spacing between elements */
+    border-radius: 10px;
+    gap: 20px;
 }
 
 .email_input_style, .password_input_style, .login_button_style {
     width: 200px;
-    height: 40px; /* Increased input/button height for better visibility */
+    height: 40px;
     background-color: white;
-    color: black; /* Changed text color for readability */
-    padding: 5px; /* Adds internal padding */
-    border-radius: 5px; /* Optional: Adds slight rounding to inputs */
-    border: none; /* Removes the default border */
-    box-sizing: border-box; /* Include padding in width */
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
 }
 
 #username_input, #create-account_button {
-    border-radius: 5px; /* Optional: Adds slight rounding to inputs */
+    border-radius: 5px;
 }
 
 .password-container {
     position: relative;
-    width: 200px; /* Match the width of the input */
+    width: 200px;
 }
 
 .toggle-button {
     position: absolute;
-    right: 10px; /* Position the button inside the input */
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    background: none; /* No background for seamless look */
-    border: none; /* Removes default border */
-    cursor: pointer; /* Hand cursor on hover */
-    color: #007BFF; /* Button color */
-    font-size: 14px; /* Adjust font size */
-    height: 40px; /* Match input height */
-    padding: 0; /* No padding */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007BFF;
+    font-size: 14px;
+    height: 40px;
+    padding: 0;
 }
 
 .icon {
-    width: 20px; /* Adjust size as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 20px;
+    height: auto;
 }
 
 .login_button_style, .create-account_button {
-    cursor: pointer; /* Makes the button look clickable */
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .login_button_style:hover, .create-account_button:hover {
-    background-color: #ccc; /* Light grey background on hover */
+    background-color: #ccc;
 }
 
 .log {
-    color:black;
+    color: black;
     position: relative;
     bottom: 0;
 }
 
 .button {
     display: inline-block;
-    width:150px;
+    width: 150px;
     height: 40px;
-    justify-content: center;
-    align-items: center;
-    /* padding: 15px 10px; */
     margin: 10px 0;
-    background-color: #007bff; /* Bootstrap primary color */
+    background-color: #007bff;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -95,6 +90,7 @@ body {
     transition: background-color 0.3s;
     cursor: pointer;
 }
+
 .large_title {
     font-size: 50px;
     color: white;
@@ -102,5 +98,5 @@ body {
 }
 
 .redirect_link {
-    color: black
+    color: black;
 }

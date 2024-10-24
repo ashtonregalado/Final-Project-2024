@@ -1,249 +1,176 @@
-/* * {
+* {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: #ffc857;
+    background-color: #fcc857;
 }
 
-h1 {
-    font-stretch: expanded;
-    font-weight: 900;
-    text-shadow: 5px 5px 0 rgba(255, 255, 255, 0.1);
-    margin-left: 4.8%;
-    color: #ffffff;
-    font-size: 3.6rem;
-    text-align: center;
-    margin-bottom: 4vh;
+.header {
+    height: 14.4vh;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space between logo and nav */
+    padding: 0 2vh; /* Add some padding */
+}
+
+.nav_div {
     background-color: transparent;
 }
 
-#app {
-    border: 2px solid #1d3557;
-    height: 52vh;
-    width: 64vw;
-    margin-top: 20vh;
-    margin-left: 16vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: none;
-} 
-
-button {
-    margin-left: 4%;
-    height: 6vh;
-    width: 76vw;
-    margin-top: 2vh;
-    border-radius: 1.6rem;
-    border: 1px solid transparent;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#loginButton {
-    margin-top: 32vh;
-    font-size: 2.8vh;
-    color: #fcc857;
-    background-color: white;
+.logo {
+    font-size: 8vh;
     font-weight: bolder;
-}
-
-#loginButton:hover {
-    background-color: #ffc857;
-    color: #f6f4e6;
-}
-
-#createAccountButton {
-    font-size: 2.8vh;
-    font-weight: bold;
-    background-color: #fcc857;
-    color: #f6f4e6;
-    border: 2px solid white;
-}
-
-#createAccountButton:hover {
-    border: 2px solid #fcc857;
-    background-color: #f6f4e6;
-    color: #fcc857;
-}
-
-@media (min-width: 768px) {
-    h1 {
-        font-size: 5rem;
-        margin-left: 0;
-    }
-
-    #app {
-        height: 70vh;
-        width: 40vw;
-        margin-top: 10vh;
-        margin-left: auto;
-        margin-right: auto;
-        border: 2px solid black;
-    }
-
-    button {
-        margin-left: 12%;
-        width: 30vw;
-    }
-
-    #loginButton, #createAccountButton {
-        font-size: 2rem;
-    }
-}
- */
-
- * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #ffffff;
-}
-
-h1 {
-    font-stretch: expanded;
-    font-weight: 900;
-    text-shadow: 5px 5px 0 rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    font-size: 2.8rem;
-    text-align: center;
-    margin-bottom: 4vh;
     background-color: transparent;
+    margin-left: 3.2vh;
+    margin-top: -2vh;
 }
-
-#app {
-    height: 60vh;
-    width: 52vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    background-color: #fcc857;
-    position: absolute;
-    top: 50%; /* Added */
-    left: 50%; /* Added */
-    transform: translate(-50%, -50%); /* Added */
-    border-radius: 2vh;
-} 
 
 ul {
     background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    margin-left: 64vh;
+    margin-top: -6.2vh;
+    font-size: 1.2rem;
+    color: black; /* Set text color to black */
+    font-weight: bold;
+    
 }
 
-nav {
+ul li {
+    margin: 0 3.6vh; /* Space between list items */
+    text-decoration: none; /* Remove underline */
+    color: black; /* Ensure text color is black */
     background-color: transparent;
 }
+
+ul li a {
+    background-color: transparent;
+    text-decoration: none; /* Ensure links have no underline */
+    color: black; /* Ensure link color is black */
+}
+
+.search{
+    background-color: transparent;
+}
+
+
+.search_input {
+    border: none;
+    border-radius: 4vh;
+    height: 6.8vh;
+    width: 28vw;
+    padding-left: 2.8rem;
+    background-color: rgb(218, 218, 218);
+    margin-right: 16vh;
+    margin-top: 1.6vh;
+    font-size: 2.4vh;
+    background-size: 1.5rem; /* Adjust size as needed */
+    background-repeat: no-repeat; /* Prevent repeating */
+    background-position: left 0.8rem center; /* Position it */
+    outline: none;
+    background-image: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_62_35)"><path d="M14 24C19.5228 24 24 19.5228 24 14C24 8.47715 19.5228 4 14 4C8.47715 4 4 8.47715 4 14C4 19.5228 8.47715 24 14 24Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M21.0713 21.0713L28 28" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_62_35"><rect width="32" height="32" fill="white"/></clipPath></defs></svg>');
+}
+
+.welcome {
+    font-size: 6.8vh;
+    color: white;
+    margin-left: 6.4vw;
+    margin-top: 9.6vh;
+    font-weight: 100;
+}
+
+
+.geniu {
+    margin-top: -2vh;
+    font-size: 12vh;
+    color: white;
+    margin-left: 6.8vw;
+    font-weight: 100;
+    font-weight: bolder;
+}
+
+.top {
+    text-indent: 4.4vw;
+    font-size: 3.6vh;
+    color: white;
+    margin-left: 6.4vw;
+    font-weight: 100;
+    margin-top: 2vh;
+} 
+
+p, .top {
+    font-size: 3.6vh;
+    color: white;
+    margin-left: 7.2vw;
+    font-weight: 100;
+} 
+
+.started_button {
+    margin-top: -10.4vh;
+}
+
+#get_started {
+    height: 9.6vh;
+    width: 28vw;
+    background-color: white;
+    color: #fcc857;
+    font-size: 3.2vh;
+    font-weight: bold;
+    border: none;
+    border-radius: 6vh;
+    margin-left: 128vh;
+}
+
+#buttons_cont {
+    margin-left: 60vw;
+    margin-top: -40vh;
+    text-indent: 5.2vw;
+
+}
+
+h1 {
+    color: white;
+}
+
 
 button {
-    margin-left: 24%;
-    height: 6vh;
-    width: 48vw;
+    display: flex;
+    flex-direction: row; /* Ensure items are in a row */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Align items vertically */
+    height: 8vh;
+    width: 24vw;
+    border-radius: 4vh;
+    border: none;
+    font-size: 3vh;
+    font-weight: bold;
     margin-top: 2vh;
-    border-radius: 1.6rem;
-    border: 1px solid transparent;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    background-color: transparent;
 }
 
 #loginButton {
-    font-size: 2.8vh;
-    color: #fcc857;
     background-color: white;
-    font-weight: bolder;
-    border: 2px solid #fcc857;
+    color: #ffc857;
 }
 
 #loginButton:hover {
-    background-color: #ffc857;
-    color: #f6f4e6;
+    background-color: rgb(211, 211, 211);
+    color: #ffc146;
 }
 
 #createAccountButton {
-    font-size: 2.8vh;
-    font-weight: bold;
-    background-color: #fcc857;
-    color: #ffffff;
+    background-color: #ffc146;
+    color: white;
     border: 2px solid white;
 }
 
 #createAccountButton:hover {
-    border: 2px solid #fcc857;
-    background-color: #f6f4e6;
-    color: #fcc857;
-}
-
-@media (min-width: 768px) {
-    h1 {
-        font-stretch: expanded;
-        font-weight: 900;
-        text-shadow: 5px 5px 0 rgba(255, 255, 255, 0.1);
-        color: #ffffff;
-        font-size: 3.2rem;
-        text-align: center;
-        margin-bottom: 4vh;
-        background-color: transparent;
-    }
-    
-    #app {
-        height: 60vh;
-        width: 80vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border: none;
-        background-color: #fcc857;
-        position: absolute; /* Added */
-        top: 50%; /* Added */
-        left: 50%; /* Added */
-        transform: translate(-50%, -50%); /* Added */
-        border-radius: 2vh;
-    } 
-    
-    ul {
-        background-color: transparent;
-    }
-    
-    nav {
-        background-color: transparent;
-    }
-    
-    button {
-        margin-left: 9%;
-        height: 6vh;
-        width: 32vw;
-        margin-top: 2vh;
-        border-radius: 1.6rem;
-        border: 1px solid transparent;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        background-color: transparent;
-    }
-    
-    #loginButton {
-        font-size: 2.8vh;
-        color: #fcc857;
-        background-color: white;
-        font-weight: bolder;
-        border: 2px solid #fcc857;
-    }
-    
-    #loginButton:hover {
-        background-color: #ffc857;
-        color: #f6f4e6;
-    }
-    
-    #createAccountButton {
-        font-size: 2.8vh;
-        font-weight: bold;
-        background-color: #fcc857;
-        color: #ffffff;
-        border: 2px solid white;
-    }
-    
-    #createAccountButton:hover {
-        border: 2px solid #fcc857;
-        background-color: #f6f4e6;
-        color: #fcc857;
-    }
+    background-color: #ffc857;
+    color: rgb(211, 211, 211);
+    border: 2px solid rgb(205, 205, 205);
 }
