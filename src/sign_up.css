@@ -66,7 +66,7 @@ input {
     border: 1.2px solid grey;
     border-radius: 4vh;
     padding-left: 4vh;
-    color: white;
+    color: rgb(0, 0, 0);
     background-color: #ffffff;
 }
 
