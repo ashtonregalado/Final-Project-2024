@@ -1,15 +1,23 @@
 {
-  "name": "finals-webapp",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "final-project-2024",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "format": "prettier --write '**/*.{js,ts,jsx,tsx,json,css,md}'",
+    "prepare": "husky"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.5.3",
-    "vite": "^5.4.8"
+    "@eslint/js": "^9.13.0",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
+    "husky": "^9.1.6",
+    "prettier": "^3.3.3",
+    "typescript-eslint": "^8.11.0"
   }
 }
