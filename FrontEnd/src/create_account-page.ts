@@ -23,6 +23,8 @@ signupButton.addEventListener('click', () => {
   const email = emailInput.value;
   const password = passwordInput.value;
 
+  //localStorage.clear(); clears the local storage. Only for testing purposes!
+
   if (username === '' || email === '' || password === '') {
     alert('Please fill in all the fields');
     return;
@@ -56,4 +58,5 @@ signupButton.addEventListener('click', () => {
   usernameInput.value = '';
   emailInput.value = '';
   passwordInput.value = '';
+  window.location.href = 'upload_page/index.html';
 });

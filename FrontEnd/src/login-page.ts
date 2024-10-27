@@ -21,6 +21,8 @@ loginButton.addEventListener('click', () => {
   const email = emailInput.value;
   const password = passwordInput.value;
 
+  //localStorage.clear(); clears the local storage. Only for testing purposes!
+
   if (email === '' || password === '') {
     alert('Please fill in all the fields');
   }
@@ -40,6 +42,7 @@ loginButton.addEventListener('click', () => {
 
       emailInput.value = '';
       passwordInput.value = '';
+      window.location.href = 'upload_page/index.html';
     } else {
       alert('Incorrect Password');
       passwordInput.value = '';
