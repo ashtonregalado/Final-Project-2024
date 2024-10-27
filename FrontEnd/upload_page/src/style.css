@@ -44,7 +44,6 @@ ul {
   font-size: 1.2rem;
   color: black; /* Set text color to black */
   font-weight: bold;
-  
 }
 
 ul li {
@@ -60,10 +59,9 @@ ul li a {
   color: black; /* Ensure link color is black */
 }
 
-.search{
+.search {
   background-color: transparent;
 }
-
 
 .search_input {
   border: none;
