@@ -14,7 +14,7 @@ const hideIcon = 'src/images/hide.png'; // Path to hide icon
 togglePassword.addEventListener('click', function () {
   const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
   passwordInput.setAttribute('type', type);
-  toggleIcon.src = type === 'password' ? showIcon : hideIcon; // Switch icon based on visibility
+  toggleIcon.src = type === 'password' ? hideIcon : showIcon; // Switch icon based on visibility
 });
 
 loginButton.addEventListener('click', () => {

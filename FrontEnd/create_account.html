@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="src\sign_up.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src\sign_up.css" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
@@ -12,19 +12,19 @@
   <body>
     <div id="app"></div>
 
-    <div class = "logo_cont">
+    <div class="logo_cont">
       <h1 class="large_title">GeniuShare</h1>
     </div>
 
     <div class="login_container_style">
-      <h1 class = "sign_up_label">Sign up</h1>
-      <input type="text" id="username_input" class="username_input_type" placeholder="Username" maxlength="15">
-      <input type="email" id="email_input" class="email_input_style" placeholder="Email" maxlength="30">
-      
+      <h1 class="sign_up_label">Sign up</h1>
+      <input type="text" id="username_input" class="username_input_type" placeholder="Username" maxlength="15" />
+      <input type="email" id="email_input" class="email_input_style" placeholder="Email" maxlength="30" />
+
       <div class="password-container">
-        <input type="password" id="password_input" class="password_input_style" placeholder="Password" maxlength="16">
+        <input type="password" id="password_input" class="password_input_style" placeholder="Password" maxlength="16" />
         <button id="togglePassword" class="toggle-button">
-          <img src="src/images/show.png" alt="Show Password" id="toggleIcon" class="icon">
+          <img src="src/images/hide.png" alt="Show Password" id="toggleIcon" class="icon" />
         </button>
       </div>
 
@@ -32,7 +32,7 @@
 
       <p class="log">Already have an account? <a href="login.html" class="redirect_link">Login here</a></p>
     </div>
-    
+
     <script type="module" src="src/create_account-page.ts"></script>
   </body>
 </html>
