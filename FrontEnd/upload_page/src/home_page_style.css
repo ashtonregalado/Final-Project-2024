@@ -47,7 +47,6 @@ ul {
   font-size: 1.2rem;
   color: black; /* Set text color to black */
   font-weight: bold;
-  
 }
 
 ul li {
@@ -63,10 +62,9 @@ ul li a {
   color: black; /* Ensure link color is black */
 }
 
-.search{
+.search {
   background-color: transparent;
 }
-
 
 .search_input {
   border: none;
@@ -150,19 +148,17 @@ span {
 .add_notes_button {
   position: fixed;
   bottom: 8vh; /* Distance from the bottom */
-  right: 8vh;  /* Distance from the right */
+  right: 8vh; /* Distance from the right */
   cursor: pointer; /* Change cursor on hover */
   border: 4px solid white;
   border-radius: 2vh;
 }
-
 
 .notes_cont {
   margin-top: 4vh;
   background-color: transparent; /* Keep this as the only background color */
   height: 20vh;
 }
-
 
 .drop_down {
   position: fixed;
@@ -173,9 +169,8 @@ span {
   z-index: 2; /* Ensures the drop-down is above other elements */
 }
 
-
 .drop_down_option {
-  display: none; 
+  display: none;
   position: absolute;
   bottom: 100%; /* Position it above the drop-down button */
   right: -2vh;
