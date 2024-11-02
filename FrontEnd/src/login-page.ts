@@ -42,7 +42,7 @@ loginButton.addEventListener('click', () => {
 
       emailInput.value = '';
       passwordInput.value = '';
-      window.location.href = 'upload_page/index.html';
+      window.location.href = 'upload_page/home_page.html';
     } else {
       alert('Incorrect Password');
       passwordInput.value = '';

@@ -58,5 +58,5 @@ signupButton.addEventListener('click', () => {
   usernameInput.value = '';
   emailInput.value = '';
   passwordInput.value = '';
-  window.location.href = 'upload_page/index.html';
+  window.location.href = 'upload_page/home_page.html';
 });
