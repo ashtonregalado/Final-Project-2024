@@ -17,8 +17,6 @@ body {
   background-color: transparent;
 }
 
-
-
 .logo_cont {
   z-index: 1;
   border-top-left-radius: 6vh;
@@ -35,8 +33,6 @@ body {
   -webkit-box-shadow: -29px -3px 45px 7px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: -29px -3px 45px 7px rgba(0, 0, 0, 0.58);
 }
-
-
 
 .incorrect_password {
   z-index: 3; /* Ensure it's above the logo and login container */
@@ -76,7 +72,6 @@ body {
 .incorrect_password .inco_button:hover {
   background-color: #f2b02d;
 }
-
 
 .login_container_style {
   z-index: 1;

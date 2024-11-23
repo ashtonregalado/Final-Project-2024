@@ -39,30 +39,27 @@ loginButton.addEventListener('click', () => {
   if (existinguser) {
     if (existinguser.Password === password) {
       alert(`Welcome Back ${existinguser.Username}`);
-  
+
       emailInput.value = '';
       passwordInput.value = '';
       window.location.href = 'upload_page/home_page.html';
     } else {
-      
       const inco_pass_message = document.createElement('div');
       inco_pass_message.classList.add('incorrect_password');
       inco_pass_message.innerHTML = `
         <h3 class="inco_message">Incorrect Password!</h3>
         <button class="inco_button" id="try_again">Try Again</button>`;
-  
-  
+
       document.body.appendChild(inco_pass_message);
-  
+
       passwordInput.value = '';
       const tryAgainButton = inco_pass_message.querySelector<HTMLButtonElement>('#try_again');
-      
+
       if (tryAgainButton) {
         tryAgainButton.addEventListener('click', () => {
-          inco_pass_message.remove(); 
+          inco_pass_message.remove();
         });
       }
     }
   }
-
 });
