@@ -17,7 +17,10 @@ body {
   background-color: transparent;
 }
 
+
+
 .logo_cont {
+  z-index: 1;
   border-top-left-radius: 6vh;
   border-bottom-left-radius: 6vh;
   display: flex;
@@ -33,7 +36,50 @@ body {
   -moz-box-shadow: -29px -3px 45px 7px rgba(0, 0, 0, 0.58);
 }
 
+
+
+.incorrect_password {
+  z-index: 3; /* Ensure it's above the logo and login container */
+  position: absolute; /* Position it above the other elements */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust the positioning to truly center it */
+  background-color: #ffffff;
+  height: 32vh;
+  width: 36vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px; /* Optional: add some border radius */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Optional: add some shadow */
+  text-align: center; /* Optional: center the text inside */
+}
+
+.incorrect_password .inco_message {
+  font-size: 4.3vh;
+  color: #333;
+  margin-bottom: 1.5vh;
+  background-color: #ffffff;
+}
+
+.incorrect_password .inco_button {
+  padding: 1vh 2vw;
+  background-color: #fcc857;
+  border: none;
+  border-radius: 4vh;
+  color: white;
+  font-size: 2.8vh;
+  cursor: pointer;
+}
+
+.incorrect_password .inco_button:hover {
+  background-color: #f2b02d;
+}
+
+
 .login_container_style {
+  z-index: 1;
   border: 2px solid white;
   border-top-right-radius: 6vh;
   border-bottom-right-radius: 6vh;

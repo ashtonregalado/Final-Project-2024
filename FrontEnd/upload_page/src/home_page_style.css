@@ -12,8 +12,7 @@ body {
 } */
 
 .header {
-  margin-top: -20vh;
-  position: fixed;
+  /* position: fixed; */
   height: 14.4vh;
   width: 100%;
   background-color: rgb(255, 255, 255);
