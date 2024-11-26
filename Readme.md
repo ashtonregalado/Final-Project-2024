@@ -1,1 +1,1 @@
-This branch is for compiling of all features before merging to main.
+For running the code, cd the specific directory you want to run, then npm install, and npm run dev.
