@@ -1,28 +1,20 @@
 {
-<<<<<<< HEAD
-  "name": "frontend",
+  "name": "finals-webapp",
+  "private": true,
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
-  "devDependencies": {},
+  "description": "",
   "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
-=======
-  "name": "finals-webapp",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
   "devDependencies": {
     "typescript": "^5.5.3",
     "vite": "^5.4.8"
   }
->>>>>>> bf9e3f6121248662ce40579dc9eade775d72be58
 }

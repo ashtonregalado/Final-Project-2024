@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
-  background-color: #fcc857;
+  background-color: #ffffff;
 }
 
 body {
@@ -200,6 +200,7 @@ svg {
 }
 
 .year_lev {
+  font-size: 2.4vh;
   background-color: white;
 }
 
@@ -208,13 +209,15 @@ svg {
   background-color: white;
 }
 
-select {
+.side_modal_select {
+  height: 4vh;
+  width: 14.4vw;
   outline: none;
   margin-top: 6px;
   background-color: rgb(204, 204, 204);
   border: none;
   font-size: 2.4vh;
-  border-radius: 20px;
+  border-radius: 1;
 }
 
 option {
@@ -227,119 +230,89 @@ option {
   background-color: white;
 }
 
-/*--------------------------------------------------------------------------------*/
+/*------------------------------------------------------------*/
 
-.notes_container {
-  margin-top: 16vh;
+.up_label {
+  text-align: center;
+  margin-top: 16vh; /* Reduced from 16vh to 8vh */
+}
+
+.label {
+  text-align: center;
+  font-size: 6vh;
+}
+
+.upload_file_form_cont {
+  background-color: #ffffff;
+  height: 56vh; /* Full viewport height for vertical centering */
+  width: 100vw; /* Full viewport width */
   display: flex;
-  flex-direction: row; /* Arrange .notes_cont_box elements horizontally */
-  flex-wrap: wrap; /* Allow wrapping of boxes if they exceed container width */
-  gap: 16px; /* Add space between each .notes_cont_box */
+  align-items: center; /* Horizontally centers the child elements */
+  justify-content: center; /* Vertically centers the child elements */
+  flex-direction: column; /* Align .up_label and form vertically */
+  gap: 4vh; /* Space between .up_label and form */
 }
 
-.notes_cont_box {
-  margin-top: 2vh;
-  left: 18.6vw;
-  top: 0;
-  height: 30vh;
-  width: 24vw;
-  border-radius: 2vh;
-  background-color: rgb(255, 255, 255);
+form {
   display: flex;
-  padding: 10px;
-  position: relative;
-  flex: 0 0 auto; /* Ensure the box doesn't shrink or grow unexpectedly */
-  /* background-image: url("src/pdf.svg"); */
-  /* background-repeat: no-repeat; */
-  /* background-position: 16px 40px; */
+  flex-direction: column; /* Stack form elements vertically */
+  align-items: center; /* Center align form elements horizontally */
+  gap: 2vh; /* Add spacing between the stacked form elements */
 }
 
-.file_type_img {
-  position: absolute; /* Position the image relative to .subject_cont */
-  left: 24px;
-  top: 64px;
-  transform: translateY(-50%);
-  margin-right: 8px;
-  background-color: transparent;
+.year_level {
+  margin-top: 4vh;
 }
 
-.favorites {
-  height: 4vh;
-  margin-top: -4px;
-  background-color: rgb(255, 255, 255);
+.year_level,
+.subjects_label {
+  font-size: 1.6rem;
+}
+
+select {
+  height: 5.6vh;
+  width: 20vw;
   outline: none;
+  border-radius: 4vh;
+  padding-left: 12px;
+  font-size: 1.2rem;
+}
+
+.subject_input {
+  height: 5.6vh;
+  width: 20vw;
+  outline: none;
+  border-radius: 4vh;
+  border: 1px solid;
+  text-indent: 12px;
+}
+
+.file_input {
+  border-radius: 0;
   border: none;
-}
-
-.download_button {
-  height: 4vh;
-  margin-top: -4px;
-  background-color: rgb(255, 255, 255);
-  outline: none;
-  border: none;
-}
-
-.svg_icon_notes {
-  padding: 7.6px 0 0 12px;
-  background-color: rgb(255, 255, 255);
-  outline: none;
-}
-
-.svg_icon_download {
-  padding: 12.8px 0 0 260px;
-  background-color: white;
-  outline: none;
-}
-
-strong {
-  font-size: 2.8vh;
-  background-color: white;
-}
-
-.username {
-  margin: 40px 0 0 0;
-  font-size: 2.4vh;
-  background-color: white;
-}
-
-.subject_cont {
-  height: 21px;
-  background-color: transparent;
-  position: absolute;
-  top: 44px;
-  left: 68px;
-  font-size: 1rem;
-}
-
-.topic_cont {
-  height: 21px;
-  background-color: transparent;
-  position: absolute;
-  top: 68px;
-  left: 68px;
-  font-size: 1rem;
-}
-
-.profile {
-  position: absolute;
-  left: 24px;
-  top: 188px;
-  transform: translateY(-50%);
-  margin-right: 8px;
-  background-color: transparent;
-}
-
-.user_name_cont {
   display: flex;
+  justify-content: center;
   align-items: center;
-  background-image: url(src/profile_notes.svg);
-  background-position: left center;
-  background-repeat: no-repeat;
-  height: 60px;
-  background-color: transparent;
-  position: absolute;
-  top: 140px;
-  left: 16px;
-  font-size: 16px;
-  padding-left: 40px;
+  height: 5.6vh;
+  width: 100%; /* Full width of its parent */
+  font-size: 2.8vh;
+  background-color: #ffffff;
+  margin: 2.8vh auto 0 12vw; /* Center horizontally */
+}
+
+.submit_button {
+  height: 6.4vh;
+  width: 20vw;
+  margin-top: 4vh;
+  border-radius: 4vh;
+  border: 2.4px solid #ffc857;
+  font-size: 3.6vh;
+  font-weight: bold;
+  margin-left: auto; /* Ensure it's centered horizontally */
+  margin-right: auto; /* Center horizontally */
+}
+
+.submit_button:hover {
+  background-color: #ffc857;
+  color: white;
 }
