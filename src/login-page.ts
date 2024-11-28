@@ -29,8 +29,26 @@ loginButton.addEventListener("click", () => {
     const emailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailpattern.test(email)) {
-        alert("Please enter a valid Email");
+        // const inco_pass_message = document.createElement('div');
+        // inco_pass_message.classList.add('incorrect_password');
+        // inco_pass_message.innerHTML = `
+        //     <h3 class="inco_message">Invalid email</h3>
+        //     <button class="inco_button" id="try_again">Try Again</button>`;
+
+        // document.body.appendChild(inco_pass_message);
+        // const tryAgainButton = inco_pass_message.querySelector<HTMLButtonElement>('#try_again');
+
+        emailInput.value = "";
+        
+
+        // if (tryAgainButton) {
+        //     tryAgainButton.addEventListener('click', () => {
+        //     inco_pass_message.remove();
+        //     });
+        // }
+
         return;
+
     }  
 
     const existinguser = users.find((user) => user.Email === email)
@@ -42,6 +60,8 @@ loginButton.addEventListener("click", () => {
 
             emailInput.value = "";
             passwordInput.value = "";
+            window.location.href = "home_page_upload_file/home_page.html";
+
         } else {
             alert("Incorrect Password")
             passwordInput.value = "";
