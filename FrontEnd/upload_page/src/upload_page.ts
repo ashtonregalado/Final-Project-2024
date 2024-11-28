@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
       subjectInput.disabled = true;
 
       // Optionally, redirect to Index Page
-      window.location.href = 'index.html';
+      window.location.href = 'home_page.html';
     };
 
     reader.readAsDataURL(fileUpload);
