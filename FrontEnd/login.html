@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/sign_up.css" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In</title>
+    
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!-- <div class = "incorrect_password" id = "inco_pass_nessage">
+      <h3 class = "inco_message">Incorrect Password</h3>
+      <button class = "inco_button" id = "try_again">Try Again</button>
+    </div> -->
+
+    <div class="logo_cont">
+      <h1 class="large_title">GeniuShare</h1>
+    </div>
+    <div class="login_container_style">
+      <h1 class="sign_up_label">Log In</h1>
+      <input type="email" id="email_input" class="email_input_style" placeholder="Email" maxlength="35" />
+      <div class="password-container">
+        <input type="password" id="password_input" class="password_input_style" placeholder="Password" maxlength="16" />
+        <button id="togglePassword" class="toggle-button">
+          <img src="src/images/hide.png" alt="Show Password" id="toggleIcon" class="icon" />
+        </button>
+      </div>
+      
+      <button id="login_button" class="login_button_style">Login</button>
+      <p class="log">Don't have an account? <a href="create_account.html" class="redirect_link">Create one here</a></p>
+    </div>
+
+    <script type="module" src="src/login-page.ts"></script>
+  </body>
+</html>
