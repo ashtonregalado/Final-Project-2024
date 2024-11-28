@@ -4,6 +4,34 @@ interface Note {
   fileName: string;
   dateAdded: string;
 }
+// export interface Note {
+//   NoteID: number;
+//   Topic: string;
+//   Content: string;
+//   UploadDate: Date;
+//   UserID: number;
+//   YearLevelID: number;
+//   SubjectID: number;
+// }
+
+// import { Note } from './account';
+
+// document.addEventListener('DOMContentLoaded', async () => {
+//   try {
+//     const response = await fetch("http://localhost:3000/api/add-notes",
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify()
+//       }
+//     )
+//   } catch (error) {
+
+//   }
+
+// });
 
 document.addEventListener('DOMContentLoaded', () => {
   const notes: Note[] = JSON.parse(localStorage.getItem('notes') || '[]');

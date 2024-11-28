@@ -1,8 +1,10 @@
-export type User = {
-  Username: string;
-  Email: string;
-  Password: string;
-};
+import { User } from '../../FrontEnd/upload_page/src/account';
+
+// export type User = {
+//   Username: string;
+//   Email: string;
+//   Password: string;
+// };
 
 export function loadUsers(): User[] {
   const userJSON = localStorage.getItem('users');
