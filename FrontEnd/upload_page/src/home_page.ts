@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <p class="user_name_cont"><strong class="username">${username}</strong></p>
     `;
 
-    notesContainer.appendChild(fileDiv);  // Using notesContainer to append the fileDiv
+    notesContainer.appendChild(fileDiv); // Using notesContainer to append the fileDiv
   });
 
   notesContainer.addEventListener('click', (event) => {
