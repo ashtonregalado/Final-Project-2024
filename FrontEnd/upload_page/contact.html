@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="src/style.css" />
+    <link rel="stylesheet" href="contact.css" />
     <title>Vite App</title>
   </head>
   <body>
     <div id="app"></div>
-
     <div class="header">
+      
       <nav class="nav_div">
         <div class="logo">GeniuShare</div>
         <ul>
@@ -20,14 +21,44 @@
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </nav>
+    </div>
 
-      <div class="search">
-        <input id="search_input" class="search_input" type="search" placeholder="search" />
+    <div class="container">
+      <div class="form-section">
+        <form>
+          <div>
+            <input type="text" id="first_name" placeholder="FIRST NAME" required />
+          </div>
+          <div>
+            <input type="text" id="last_name" placeholder="LAST NAME" required />
+          </div>
+          <div>
+            <input type="email" id="email" placeholder="EMAIL" required />
+          </div>
+          <div>
+            <input type="tel" id="phone_number" placeholder="PHONE NUMBER" required />
+          </div>
+          <div>
+            <textarea id="field" placeholder="WHAT DO YOU HAVE IN MIND"></textarea>
+          </div>
+          <button id="submit_button" class="submit-btn">Submit</button>
+        </form>
+      </div>
+      <div class="info-section">
+        <h2>Contact us</h2>
+        <div class="contact-info">
+          <p>Contact Number: +1258 3258 5679</p> 
+          <p>Email: hello@workik.com</p>
+          <p><img src="location-icon.png" alt="Location" /> 102 street, y cross 485656</p>
+        </div>
+        <div class="social-icons">
+          <img src="twitter-icon.png" alt="Twitter" />
+          <img src="instagram-icon.png" alt="Instagram" />
+          <img src="facebook-icon.png" alt="Facebook" />
+        </div>
       </div>
     </div>
 
-    <div>Call us at 09XXXXXXXXX</div>
-    <script type="module" src="src/nav.ts"></script>
-    <script type="module" src="src/main.ts"></script>
+    <script type="module" src="src/contact.ts"></script>
   </body>
-</html>
+</html> 
