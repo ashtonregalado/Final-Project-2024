@@ -33,7 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Loop through each note and add it to the container
+
   notes.forEach((note, index) => {
+    const fileLink = document.createElement('a');
+    fileLink.href = 'file_preview_page.html';
+    fileLink.classList.add('notes_lists');
+
     const fileDiv = document.createElement('div');
     fileDiv.classList.add('notes_cont_box');
 
@@ -42,12 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const username = note.username || 'Anonymous';
 
     fileDiv.innerHTML = `
-      <button class="favorites" title="Mark as Favorite">
-        <!-- SVG omitted for brevity -->
-      </button>
-      <button class="download_button" title="Download" data-index="${index}">
-        <!-- SVG omitted for brevity -->
-      </button>
+      <button class="favorites" title="Mark as Favorite"></button>
+      <button class="download_button" title="Download" data-index="${index}"></button>
       <img src="src/pdf.svg" alt="file type" class="file_type_img">
       <p class="subject_cont"><strong>Subject:</strong> ${subject}</p>
       <p class="topic_cont"><strong>Topic:</strong> ${topic}</p>
@@ -55,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <p class="user_name_cont"><strong class="username">${username}</strong></p>
     `;
 
-    notesContainer.appendChild(fileDiv); // Using notesContainer to append the fileDiv
+    fileLink.appendChild(fileDiv);
+    notesContainer.appendChild(fileLink); // Using notesContainer to append the fileLink
   });
+
 
   notesContainer.addEventListener('click', (event) => {
     const target = event.target as HTMLElement;

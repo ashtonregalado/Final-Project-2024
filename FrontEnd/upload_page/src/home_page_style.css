@@ -229,8 +229,13 @@ option {
 
 /*--------------------------------------------------------------------------------*/
 
+.notes_lists {
+  background-color: #fcc857;
+}
+
 .notes_container {
   margin-top: 16vh;
+  margin-left: 0.2vh;
   display: flex;
   flex-direction: row; /* Arrange .notes_cont_box elements horizontally */
   flex-wrap: wrap; /* Allow wrapping of boxes if they exceed container width */
