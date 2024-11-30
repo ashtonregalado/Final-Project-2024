@@ -203,30 +203,50 @@ svg {
   background-color: white;
 }
 
-.side_label {
-  margin-top: 8px;
-  background-color: white;
+
+form {
+  display: flex;
+  flex-direction: column; /* Stack form elements vertically */
+  align-items: center; /* Center align form elements horizontally */
+  gap: 2vh; /* Add spacing between the stacked form elements */
+}
+
+.year_level {
+  margin-top: 4vh;
+}
+
+
+form {
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column; /* Stack form elements vertically */
+  align-items: center; /* Center align form elements horizontally */
+  gap: 2vh; /* Add spacing between the stacked form elements */
+}
+
+.year_level,
+.subjects_label {
+  background-color: #f4f4f4;
+  font-size: 1.6rem;
 }
 
 select {
+  height: 5.6vh;
+  width: 12vw;
   outline: none;
-  margin-top: 6px;
-  background-color: rgb(204, 204, 204);
-  border: none;
-  font-size: 2.4vh;
-  border-radius: 20px;
+  border-radius: 4vh;
+  padding-left: 12px;
+  font-size: 1rem;
 }
 
-option {
-  border: none;
+.subject_input {
+  height: 5.6vh;
+  width: 20vw;
   outline: none;
-}
-
-.side_label2 {
-  margin-top: 2.8vh;
-  background-color: white;
-}
-
+  border-radius: 4vh;
+  border: 1px solid;
+  text-indent: 12px;
+} 
 /*--------------------------------------------------------------------------------*/
 
 .notes_lists {
