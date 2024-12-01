@@ -23,29 +23,48 @@ signupButton.addEventListener('click', () => {
   const email = emailInput.value;
   const password = passwordInput.value;
 
-  //localStorage.clear(); clears the local storage. Only for testing purposes!
-
   if (username === '' || email === '' || password === '') {
-    alert('Please fill in all the fields');
-    return;
+    const fieldsMessage = document.getElementById('incomplete_fields_message')!;
+    fieldsMessage.style.display = 'flex';
+
+    const fillFieldsButton = fieldsMessage.querySelector<HTMLButtonElement>('#fill_fields_again');
+    fillFieldsButton?.addEventListener('click', () => {
+      fieldsMessage.style.display = 'none';
+    });
+
+    return; // Exit function early since fields are incomplete
   }
 
   const emailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailpattern.test(email)) {
-    alert('Please enter a valid Email');
-    return;
+    const invalidEmailMessage = document.getElementById('invalid_email_message')!;
+    invalidEmailMessage.style.display = 'flex';
+
+    const tryEmailButton = invalidEmailMessage.querySelector<HTMLButtonElement>('#try_email_again');
+    tryEmailButton?.addEventListener('click', () => {
+      invalidEmailMessage.style.display = 'none';
+    });
+
+    return; // Exit function early since email is invalid
   }
 
-  const existinguser = users.find((user) => user.Email);
+  const existinguser = users.find((user) => user.Email === email);
 
-  if (existinguser?.Email === email) {
-    alert('Email already in use');
+  if (existinguser) {
+    const emailInUseMessage = document.getElementById('email_in_use_message')!;
+    emailInUseMessage.style.display = 'flex';
+
+    const tryEmailInUseButton = emailInUseMessage.querySelector<HTMLButtonElement>('#try_email_in_use_again');
+    tryEmailInUseButton?.addEventListener('click', () => {
+      emailInUseMessage.style.display = 'none';
+    });
+
     usernameInput.value = '';
     emailInput.value = '';
     passwordInput.value = '';
 
-    return;
+    return; // Exit function early since email is already in use
   }
 
   const newUser: User = { Username: username, Email: email, Password: password };
