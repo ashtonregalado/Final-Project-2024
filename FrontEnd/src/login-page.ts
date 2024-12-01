@@ -21,10 +21,16 @@ loginButton.addEventListener('click', () => {
   const email = emailInput.value;
   const password = passwordInput.value;
 
-  //localStorage.clear(); clears the local storage. Only for testing purposes!
-
   if (email === '' || password === '') {
-    alert('Please fill in all the fields');
+    const fieldsMessage = document.getElementById('incomplete_fields_message')!;
+    fieldsMessage.style.display = 'flex';
+
+    const fillFieldsButton = fieldsMessage.querySelector<HTMLButtonElement>('#fill_fields_again');
+    fillFieldsButton?.addEventListener('click', () => {
+      fieldsMessage.style.display = 'none';
+    });
+
+    return; // Exit function early since fields are incomplete
   }
 
   const emailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -36,30 +42,51 @@ loginButton.addEventListener('click', () => {
 
   const existinguser = users.find((user) => user.Email === email);
 
-  if (existinguser) {
-    if (existinguser.Password === password) {
-      alert(`Welcome Back ${existinguser.Username}`);
+  if (!existinguser) {
+    // Handle incorrect email
+    const incorrectEmailMessage = document.createElement('div');
+    incorrectEmailMessage.classList.add('incorrect_email');
+    incorrectEmailMessage.innerHTML = `
+      <h3 class="email_message">Email Not Found!</h3>
+      <button class="email_button" id="try_email_again">Try Again</button>`;
 
-      emailInput.value = '';
-      passwordInput.value = '';
-      window.location.href = 'upload_page/home_page.html';
-    } else {
-      const inco_pass_message = document.createElement('div');
-      inco_pass_message.classList.add('incorrect_password');
-      inco_pass_message.innerHTML = `
-        <h3 class="inco_message">Incorrect Password!</h3>
-        <button class="inco_button" id="try_again">Try Again</button>`;
+    document.body.appendChild(incorrectEmailMessage);
 
-      document.body.appendChild(inco_pass_message);
+    emailInput.value = ''; // Clear email input field
+    const tryEmailAgainButton = incorrectEmailMessage.querySelector<HTMLButtonElement>('#try_email_again');
 
-      passwordInput.value = '';
-      const tryAgainButton = inco_pass_message.querySelector<HTMLButtonElement>('#try_again');
+    if (tryEmailAgainButton) {
+      tryEmailAgainButton.addEventListener('click', () => {
+        incorrectEmailMessage.remove();
+      });
+    }
 
-      if (tryAgainButton) {
-        tryAgainButton.addEventListener('click', () => {
-          inco_pass_message.remove();
-        });
-      }
+    return; // Exit further execution
+  }
+
+  if (existinguser.Password === password) {
+    alert(`Welcome Back ${existinguser.Username}`);
+
+    emailInput.value = '';
+    passwordInput.value = '';
+    window.location.href = 'upload_page/home_page.html';
+  } else {
+    // Handle incorrect password
+    const incoPassMessage = document.createElement('div');
+    incoPassMessage.classList.add('incorrect_password');
+    incoPassMessage.innerHTML = `
+      <h3 class="inco_message">Incorrect Password!</h3>
+      <button class="inco_button" id="try_again">Try Again</button>`;
+
+    document.body.appendChild(incoPassMessage);
+
+    passwordInput.value = '';
+    const tryAgainButton = incoPassMessage.querySelector<HTMLButtonElement>('#try_again');
+
+    if (tryAgainButton) {
+      tryAgainButton.addEventListener('click', () => {
+        incoPassMessage.remove();
+      });
     }
   }
 });
