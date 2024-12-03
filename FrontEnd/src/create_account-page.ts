@@ -33,10 +33,18 @@ signupButton.addEventListener('click', async () => {
       return;
     }
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      alert('Please enter a valid Email');
-      return;
+    const emailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailpattern.test(email)) {
+      const invalidEmailMessage = document.getElementById('invalid_email_message')!;
+      invalidEmailMessage.style.display = 'flex';
+
+      const tryEmailButton = invalidEmailMessage.querySelector<HTMLButtonElement>('#try_email_again');
+      tryEmailButton?.addEventListener('click', () => {
+        invalidEmailMessage.style.display = 'none';
+      });
+
+      return; // Exit function early since email is invalid
     }
 
     const formData = new FormData();
