@@ -26,6 +26,7 @@
     "@types/multer": "^1.4.12",
     "@types/node": "^22.7.6",
     "@types/pg": "^8.11.10",
+    "dbmate": "^2.23.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0"
   }

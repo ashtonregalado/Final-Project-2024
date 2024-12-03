@@ -17,9 +17,13 @@
 // export default pool;
 
 import { Pool } from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const pool = new Pool({
-  connectionString: 'postgresql://postgres:VillarAshton@localhost:5432/GeniuShare-Database',
+  // connectionString: 'postgresql://postgres:VillarAshton@localhost:5432/GeniuShare-Database',
+  connectionString: process.env.DATABASE_URL,
 });
 
 pool.connect((err) => {
