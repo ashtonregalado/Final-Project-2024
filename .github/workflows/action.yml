@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main  # This specifies that the action will run for PRs targeting the 'main' branch
+    # Optionally, you can add more filters, such as specific types of PR activities
+    # e.g., when a PR is opened, closed, or synchronized (updated with new commits)
 
 jobs:
   test:
@@ -16,7 +18,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3  # Sets up Node.js if your project uses it
       with:
-        node-version: '20'  # Update to your Node.js version (v20.17.0)
+        node-version: '20'  # Specify the Node.js version you're using
 
     - name: Install dependencies
       run: npm install  # Installs project dependencies
