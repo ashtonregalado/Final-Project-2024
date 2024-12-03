@@ -18,12 +18,17 @@ togglePassword.addEventListener('click', function () {
 loginButton.addEventListener('click', async () => {
   const email = emailInput.value;
   const password = passwordInput.value;
-
-  //localStorage.clear(); clears the local storage. Only for testing purposes!
-
   try {
     if (email === '' || password === '') {
-      alert('Please fill in all the fields');
+      const fieldsMessage = document.getElementById('incomplete_fields_message')!;
+      fieldsMessage.style.display = 'flex';
+
+      const fillFieldsButton = fieldsMessage.querySelector<HTMLButtonElement>('#fill_fields_again');
+      fillFieldsButton?.addEventListener('click', () => {
+        fieldsMessage.style.display = 'none';
+      });
+
+      return; // Exit function early since fields are incomplete
     }
 
     const emailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
