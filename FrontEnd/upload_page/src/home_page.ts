@@ -1,52 +1,116 @@
+// Define the interface for a note
 interface Note {
-  subject: string;
-  topic: string;
-  fileName: string;
-  dateAdded: string;
+  year?: string;
+  subject?: string;
+  topic?: string;
+  username?: string;
+  fileData?: string;
+  fileName?: string;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Retrieve uploaded notes from localStorage using the correct key
   const notes: Note[] = JSON.parse(localStorage.getItem('notes') || '[]');
-  const notesContainer = document.querySelector('.notes_cont') as HTMLDivElement;
 
-  if (notes.length === 0) {
-    const noNotesMessage = document.createElement('p');
-    noNotesMessage.textContent = 'No notes uploaded yet.';
-    notesContainer.appendChild(noNotesMessage);
-  } else {
-    notes.forEach((note) => {
-      // Create a div for each note entry
-      const noteDiv = document.createElement('div');
-      noteDiv.classList.add('note_entry');
+  // Get the container for displaying notes
+  const notesContainer = document.querySelector<HTMLDivElement>('.notes_container');
+  const yearSelect = document.getElementById('year') as HTMLSelectElement;
+  const subjectInput = document.getElementById('subject_input') as HTMLSelectElement;
 
-      // Create the file upload container
-      const fileContainer = document.createElement('div');
-      fileContainer.classList.add('file_container');
+  if (!notesContainer || !yearSelect || !subjectInput) {
+    console.error('Required DOM elements not found.');
+    return;
+  }
 
-      const fileInput = document.createElement('input');
-      fileInput.type = 'image';
-      fileInput.classList.add('file_cont');
-      fileInput.src = `path/to/your/files/${note.fileName}`; // Display uploaded file as an image, you can also replace it with actual file input functionality.
-      fileInput.alt = note.fileName;
+  // Function to render filtered notes
+  function renderNotes(filteredNotes: Note[]): void {
+    notesContainer.innerHTML = ''; // Clear current content
 
-      fileContainer.appendChild(fileInput);
-      noteDiv.appendChild(fileContainer);
+    if (filteredNotes.length === 0) {
+      const noFilesMessage = document.createElement('p');
+      noFilesMessage.textContent = 'No files available for the selected filters.';
+      noFilesMessage.style.textAlign = 'center';
+      noFilesMessage.style.marginTop = '20px';
+      notesContainer.appendChild(noFilesMessage);
+      return;
+    }
 
-      // Create the notes info container
-      const notesInfo = document.createElement('div');
-      notesInfo.classList.add('notes_info');
+    filteredNotes.forEach((note) => {
+      const fileLink = document.createElement('a');
+      fileLink.href = 'file_preview_page.html';
+      fileLink.classList.add('notes_lists');
 
-      notesInfo.innerHTML = `
-                <p class="subject_cont"><strong>Subject:</strong> ${note.subject}</p>
-                <p class="topic_cont"><strong>Topic:</strong> ${note.topic}</p>
-                <p class="date_cont"><strong>Date added:</strong> ${new Date(note.dateAdded).toLocaleString()}</p>
-            `;
+      const fileDiv = document.createElement('div');
+      fileDiv.classList.add('notes_cont_box');
 
-      // Append the file and info containers to the noteDiv
-      noteDiv.appendChild(notesInfo);
+      const subject = note.subject || 'N/A';
+      const topic = note.topic || 'N/A';
+      const username = note.username || 'Anonymous';
 
-      // Finally, append the entire noteDiv to the notes container
-      notesContainer.appendChild(noteDiv);
+      fileDiv.innerHTML = `
+        <button class="favorites" title="Mark as Favorite"></button>
+        <button class="download_button" title="Download"></button>
+        <img src="src/pdf.svg" alt="file type" class="file_type_img">
+        <p class="subject_cont"><strong>Subject:</strong> ${subject}</p>
+        <p class="topic_cont"><strong>Topic:</strong> ${topic}</p>
+        <img src="src/profile_notes.svg" alt="profile" class="profile">
+        <p class="user_name_cont"><strong class="username">${username}</strong></p>
+      `;
+
+      fileLink.appendChild(fileDiv);
+      notesContainer.appendChild(fileLink);
     });
   }
+
+  // Function to filter notes based on year and subject
+  function filterNotes(): void {
+    const selectedYear = yearSelect.value;
+    const selectedSubject = subjectInput.value;
+
+    const filteredNotes = notes.filter((note) => {
+      const matchesYear = selectedYear ? note.year === selectedYear : true;
+      const matchesSubject = selectedSubject ? note.subject === selectedSubject : true;
+      return matchesYear && matchesSubject;
+    });
+
+    renderNotes(filteredNotes);
+  }
+
+  // Function to populate subjects based on the selected year
+  function updateSubjects(): void {
+    const year = yearSelect.value;
+    let subjects: string[] = [];
+
+    if (year === 'first') {
+      subjects = ['Calculus 1', 'Chemistry', 'Software Development 1', 'Physics', 'General Math'];
+    } else if (year === 'second') {
+      subjects = ['Algorithms', 'Data Structures', 'Linear Algebra', 'Operating Systems'];
+    } else if (year === 'third') {
+      subjects = ['Machine Learning', 'Computer Networks', 'Software Engineering'];
+    } else if (year === 'fourth') {
+      subjects = ['Capstone Project', 'Advanced Programming', 'Distributed Systems'];
+    }
+
+    subjectInput.innerHTML = '<option value="">Select Subject</option>';
+    subjects.forEach((subject) => {
+      const option = document.createElement('option');
+      option.value = subject;
+      option.textContent = subject;
+      subjectInput.appendChild(option);
+    });
+
+    subjectInput.disabled = false;
+    filterNotes(); // Filter notes whenever the subjects are updated
+  }
+
+  // Attach event listeners
+  yearSelect.addEventListener('change', () => {
+    updateSubjects();
+    filterNotes();
+  });
+
+  subjectInput.addEventListener('change', filterNotes);
+
+  // Initial render of all notes
+  renderNotes(notes);
 });
