@@ -15,11 +15,11 @@ body {
   justify-content: space-between;
   padding: 0 20px;
   background-color: #f8f9fa;
-  position: fixed; /* Fix the header to the top */
-  top: 0; /* Keep it at the top */
+  position: fixed; 
+  top: 0; 
   left: 0;
-  width: 100%; /* Ensure it spans the full width */
-  z-index: 1000; /* Ensure it stays on top of other content */
+  width: 100%; 
+  z-index: 1000; 
 }
 
 .nav_div {
@@ -28,7 +28,7 @@ body {
   align-items: center;
   width: 100%;
   height: 10.8vh;
-  margin-top: 4px; /* Adjust this value if necessary to avoid content being hidden behind the fixed header */
+  margin-top: 4px; 
 }
 
 .logo {
@@ -58,9 +58,9 @@ body {
   border: 2px solid grey;
   text-indent: 32px;
   outline: none;
-  background-size: 1.2rem; /* Adjust size as needed */
-  background-repeat: no-repeat; /* Prevent repeating */
-  background-position: left 0.8rem center; /* Position it */
+  background-size: 1.2rem; 
+  background-repeat: no-repeat; 
+  background-position: left 0.8rem center; 
   background-image: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_62_35)"><path d="M14 24C19.5228 24 24 19.5228 24 14C24 8.47715 19.5228 4 14 4C8.47715 4 4 8.47715 4 14C4 19.5228 8.47715 24 14 24Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M21.0713 21.0713L28 28" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_62_35"><rect width="32" height="32" fill="white"/></clipPath></defs></svg>');
 }
 
@@ -71,7 +71,7 @@ body {
 ul {
   display: flex;
   list-style: none;
-  margin: 0 10px 0 100px; /* Remove the 1px left margin */
+  margin: 0 10px 0 100px;
   padding: 0;
   background-color: #f8f9fa;
 }
@@ -121,149 +121,287 @@ svg {
 /*------------------------------------------------------------------*/
 
 .left_side_modal {
-  position: fixed; /* Fix the modal in place */
-  top: 10.8vh; /* Adjust this based on the height of your header */
-  background-color: #f4f4f4; /* You can change the background color */
-  height: 200vh; /* Full height of the viewport */
-  width: 200px; /* You can adjust the width as needed */
-  display: flex; /* Enables flexbox layout */
-  flex-direction: column; /* Aligns children vertically */
-  justify-content: flex-start; /* Aligns the content at the top */
-  padding: 16px;
-  z-index: 999; /* Ensures the modal stays above other content */
+  position: fixed;
+  top: 12vh;
+  background-color: #e8e8e8;
+  height: 81vh;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 24px;
+  z-index: 999;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.left_side_modal:hover {
+  transform: translateX(0);
 }
 
 .side_options {
-  margin-top: 0; /* Removes top margin */
-  padding-top: 0; /* Removes top padding */
-  list-style: none; /* Removes the default list bullets */
-  padding: 0; /* Removes default padding */
-  margin: 0; /* Removes default margin */
-  display: flex; /* Enables flexbox layout for the list */
-  flex-direction: column; /* Aligns list items vertically */
-  gap: 16px; /* Adds some space between list items */
+  margin-top: 0;
+  padding-top: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .side_options li {
-  text-align: center; /* Centers the text in each list item */
+  text-align: left;
 }
 
 .side_options a {
-  text-decoration: none; /* Removes underline from links */
-  color: #333; /* Adjusts the text color */
-  font-size: 16px; /* Adjusts the font size */
+  text-decoration: none;
+  color: #444;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
 .li_side a {
-  display: flex; /* Makes the <a> tag a flex container */
-  align-items: center; /* Vertically centers the text */
-  justify-content: center; /* Horizontally centers the text */
-  height: 6vh; /* Maintains the height */
-  width: 100%; /* Ensures the <a> tag takes up 100% width of the parent */
-  background-color: #ffffff; /* Sets the background color */
-  text-decoration: none; /* Optionally removes the underline */
-  color: rgb(0, 0, 0); /* Adjusts the text color */
-  font-size: 16px; /* Optional: adjust the font size */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 50px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding-left: 16px;
+  color: #333;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .li_side a:hover {
-  background-color: #c7c7c7;
+  background-color: #f0f0f0;
+  transform: scale(1.03);
 }
 
 .side_icons {
-  margin-right: 8px;
+  margin-right: 12px;
+  width: 20px;
 }
+
+.side_icons svg {
+  fill: #333;
+  transition: fill 0.3s ease;
+}
+
+.li_side a:hover .side_icons svg {
+  fill: #fcc857;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .left_side_modal {
+    width: 200px; 
+    height: auto; 
+    top: 10vh; 
+    padding: 16px;
+  }
+
+  .side_options {
+    gap: 15px; 
+  }
+
+  .li_side a {
+    height: 45px; 
+    font-size: 0.9rem; 
+  }
+
+  .side_icons {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .left_side_modal {
+    width: 100%; 
+    height: auto; 
+    top: 8vh; 
+    padding: 12px; 
+  }
+
+  .side_options {
+    gap: 12px; 
+  }
+
+  .li_side a {
+    height: 40px; 
+    font-size: 0.85rem; 
+  }
+
+  .side_icons {
+    margin-right: 8px; 
+  }
+}
+
 
 .add_notes_button {
   font-weight: bolder;
   margin-top: 2vh;
   height: 6.4vh;
-  width: 12vw;
+  width: 10vw;
   outline: none;
   border: none;
-  border-radius: 4vw;
+  border-radius: 30px;
   margin: 20px auto 0;
+  background: linear-gradient(45deg, #fcc857, #f39c12);
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.add_notes_button:hover {
+  background: linear-gradient(45deg, #f39c12, #fcc857);
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.add_notes_button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(252, 200, 87, 0.7);
+}
+
+/* SVG Side Icon */
 .svg_side {
-  margin-right: 8px; /* Adjust the value as needed */
+  margin-right: 8px;
+  transition: transform 0.3s ease;
 }
 
 .li_side a:hover .svg_side {
+  transform: translateX(5px); 
   background-color: #c7c7c7;
 }
 
+/* Underline Effect */
 .underline {
   margin-top: -20px;
   background-color: transparent;
-  color: rgb(224, 224, 224);
+  color: #fcc857;
 }
 
-.year_lev {
-  background-color: white;
-}
-
-form {
-  display: flex;
-  flex-direction: column; /* Stack form elements vertically */
-  align-items: center; /* Center align form elements horizontally */
-  gap: 2vh; /* Add spacing between the stacked form elements */
-}
-
-.year_level {
-  margin-top: 4vh;
-}
-
-form {
-  background-color: #f4f4f4;
-  display: flex;
-  flex-direction: column; /* Stack form elements vertically */
-  align-items: center; /* Center align form elements horizontally */
-  gap: 2vh; /* Add spacing between the stacked form elements */
-}
-
+/* Year Level and Form Styles */
+.year_lev,
 .year_level,
 .subjects_label {
   background-color: #f4f4f4;
   font-size: 1.6rem;
+  font-weight: bold;
 }
 
-select {
+select,
+.subject_input {
   height: 5.6vh;
-  width: 12vw;
+  width: 60%;
   outline: none;
   border-radius: 4vh;
   padding-left: 12px;
   font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid #ccc;
 }
 
-.subject_input {
-  height: 5.6vh;
-  width: 20vw;
-  outline: none;
-  border-radius: 4vh;
-  border: 1px solid;
-  text-indent: 12px;
+select:focus,
+.subject_input:focus {
+  border-color: #fcc857;
+  box-shadow: 0 0 8px rgba(252, 200, 87, 0.5);
 }
+
+/* Form Container */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .add_notes_button {
+    width: 20vw;
+    font-size: 1.1rem;
+  }
+
+  select,
+  .subject_input {
+    width: 80%;
+  }
+
+  form {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .add_notes_button {
+    width: 20vw;
+    height: 8vh;
+    font-size: 1.1rem;
+  }
+
+  select,
+  .subject_input {
+    width: 80%;
+  }
+
+  form {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .add_notes_button {
+    width: 20vw;
+    height: 8vh;
+    font-size: 1.1rem;
+  }
+
+  select,
+  .subject_input {
+    width: 90%;
+  }
+
+  form {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
 /*--------------------------------------------------------------------------------*/
 
+/* Notes List Background */
 .notes_lists {
   background-color: #fcc857;
 }
 
+/* Notes Container - Adding a gap from the left side modal */
 .notes_container {
   margin-top: 16vh;
-  margin-left: 0.2vh;
+  margin-left: 21vw;
   display: flex;
-  flex-direction: row; /* Arrange .notes_cont_box elements horizontally */
-  flex-wrap: wrap; /* Allow wrapping of boxes if they exceed container width */
-  gap: 16px; /* Add space between each .notes_cont_box */
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
+/* Notes Cont Box */
 .notes_cont_box {
   margin-top: 2vh;
-  left: 18.6vw;
-  top: 0;
   height: 30vh;
   width: 24vw;
   border-radius: 2vh;
@@ -271,14 +409,13 @@ select {
   display: flex;
   padding: 10px;
   position: relative;
-  flex: 0 0 auto; /* Ensure the box doesn't shrink or grow unexpectedly */
-  /* background-image: url("src/pdf.svg"); */
-  /* background-repeat: no-repeat; */
-  /* background-position: 16px 40px; */
+  flex: 0 0 auto; /* Ensures the box maintains its size and doesn't stretch */
+  /* No changes to the position of the file container */
 }
 
+/* File Type Image */
 .file_type_img {
-  position: absolute; /* Position the image relative to .subject_cont */
+  position: absolute;
   left: 24px;
   top: 64px;
   transform: translateY(-50%);
@@ -286,7 +423,8 @@ select {
   background-color: transparent;
 }
 
-.favorites {
+/* Favorite and Download Button */
+.favorites, .download_button {
   height: 4vh;
   margin-top: -4px;
   background-color: rgb(255, 255, 255);
@@ -294,55 +432,52 @@ select {
   border: none;
 }
 
-.download_button {
-  height: 4vh;
-  margin-top: -4px;
-  background-color: rgb(255, 255, 255);
-  outline: none;
-  border: none;
-}
-
+/* SVG Icon Notes */
 .svg_icon_notes {
   padding: 7.6px 0 0 12px;
   background-color: rgb(255, 255, 255);
   outline: none;
 }
 
+/* SVG Icon Download */
 .svg_icon_download {
   padding: 12.8px 0 0 260px;
   background-color: white;
   outline: none;
 }
 
+/* Strong Text (Title) */
 strong {
   font-size: 2.8vh;
   background-color: white;
 }
 
+/* Username */
 .username {
   margin: 40px 0 0 0;
   font-size: 2.4vh;
   background-color: white;
 }
 
-.subject_cont {
+/* Subject and Topic Containers */
+.subject_cont, .topic_cont {
   height: 21px;
   background-color: transparent;
   position: absolute;
+  font-size: 1rem;
+}
+
+.subject_cont {
   top: 44px;
   left: 68px;
-  font-size: 1rem;
 }
 
 .topic_cont {
-  height: 21px;
-  background-color: transparent;
-  position: absolute;
   top: 68px;
   left: 68px;
-  font-size: 1rem;
 }
 
+/* Profile Image */
 .profile {
   position: absolute;
   left: 24px;
@@ -352,6 +487,7 @@ strong {
   background-color: transparent;
 }
 
+/* User Name Container */
 .user_name_cont {
   display: flex;
   align-items: center;
@@ -365,4 +501,73 @@ strong {
   left: 16px;
   font-size: 16px;
   padding-left: 40px;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  
+  .notes_cont_box {
+    width: 40vw; 
+    height: 35vh; 
+  }
+
+  
+  .subject_cont, .topic_cont {
+    font-size: 0.9rem;
+    left: 50px; 
+  }
+
+  
+  .profile {
+    left: 20px; 
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .notes_cont_box {
+    width: 48vw; 
+    height: 40vh; 
+  }
+
+  
+  .subject_cont, .topic_cont {
+    font-size: 0.9rem;
+    left: 48px;
+  }
+
+  .user_name_cont {
+    font-size: 14px; 
+    padding-left: 32px; 
+  }
+
+  
+  .profile {
+    left: 12px; 
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .notes_cont_box {
+    width: 80vw; 
+    height: 45vh; 
+  }
+
+  
+  .subject_cont, .topic_cont {
+    font-size: 0.8rem;
+    left: 40px; 
+  }
+
+  
+  .profile {
+    left: 10px; 
+  }
+
+  
+  .user_name_cont {
+    font-size: 12px; 
+    padding-left: 28px; 
+  }
 }
