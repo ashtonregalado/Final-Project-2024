@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fcc857;
+  }
+  
+  h1 {
+    color: white;
+  }
+  
+  .welcome {
+    padding-top: 9vh;
+    font-size: 6.8vh;
+    color: white;
+    margin-left: 6.4vw;
+    margin-top: 9.6vh;
+    font-weight: 100;
+  }
+  
+  .geniu {
+    margin-top: -2vh;
+    font-size: 12vh;
+    color: white;
+    margin-left: 6.8vw;
+    font-weight: 100;
+    font-weight: bolder;
+  }
+  
+  .top {
+    text-indent: 4.4vw;
+    font-size: 3.6vh;
+    color: white;
+    margin-left: 6.4vw;
+    font-weight: 100;
+    margin-top: 2vh;
+  }
+  
+  p,
+  .top {
+    font-size: 3.6vh;
+    color: white;
+    margin-left: 7.2vw;
+    font-weight: 100;
+  }
+  
+  #buttons_cont {
+    margin-left: 60vw;
+    margin-top: -40vh;
+    text-indent: 5.2vw;
+  }
+  
+  button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    width: 24vw;
+    border-radius: 4vh;
+    border: none;
+    font-size: 3vh;
+    font-weight: bold;
+    margin-top: 2vh;
+    transition: 0.5s;
+  }
+  
+  #loginButton {
+    background-color: white;
+    color: #ffc857;
+    transition-timing-function: linear;
+  }
+  
+  #loginButton:hover {
+    background-color: hsla(40, 100%, 50%, 0.921);
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  #createAccountButton {
+    background-color: #ffc146;
+    color: white;
+    border: 2px solid white;
+    transition-timing-function: linear;
+  }
+  
+  #createAccountButton:hover {
+    background-color: hsla(40, 100%, 50%, 0.921);
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .welcome {
+      font-size: 5vh;
+      margin-left: 8vw;
+    }
+    .geniu {
+      font-size: 10vh;
+      margin-left: 8vw;
+    }
+    .top, p {
+      font-size: 2.8vh;
+      margin-left: 8vw;
+    }
+    #buttons_cont {
+      margin-left: 50vw;
+      margin-top: -35vh;
+    }
+    button {
+      width: 30vw;
+      height: 7vh;
+      font-size: 2.5vh;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .welcome {
+      font-size: 4.5vh;
+      margin-left: 10vw;
+    }
+    .geniu {
+      font-size: 8vh;
+      margin-left: 10vw;
+    }
+    .top, p {
+      font-size: 2.4vh;
+      margin-left: 10vw;
+    }
+    #buttons_cont {
+      margin-left: 40vw;
+      margin-top: -30vh;
+    }
+    button {
+      width: 35vw;
+      height: 6vh;
+      font-size: 2.2vh;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .welcome {
+      font-size: 4vh;
+      margin-left: 12vw;
+    }
+    .geniu {
+      font-size: 6vh;
+      margin-left: 12vw;
+    }
+    .top, p {
+      font-size: 2vh;
+      margin-left: 12vw;
+    }
+    #buttons_cont {
+      margin-left: 35vw;
+      margin-top: -25vh;
+    }
+    button {
+      width: 45vw;
+      height: 6vh;
+      font-size: 2vh;
+    }
+  }
+  
