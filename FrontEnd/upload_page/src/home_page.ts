@@ -1,30 +1,33 @@
-// Define the interface for a note
 interface Note {
-  year?: string;
-  subject?: string;
-  topic?: string;
-  username?: string;
-  fileData?: string;
-  fileName?: string;
+  year: string;
+  subject: string;
+  topic: string;
+  username: string;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Retrieve uploaded notes from localStorage using the correct key
-  const notes: Note[] = JSON.parse(localStorage.getItem('notes') || '[]');
 
-  // Get the container for displaying notes
+  // Predefined array of notes
+  const notes: Note[] = [
+    { year: 'first', subject: 'Calculus 1', topic: 'Derivatives', username: 'Ashton' },
+    { year: 'second', subject: 'Data Structures', topic: 'Trees', username: 'Joshua' },
+    { year: 'third', subject: 'Machine Learning', topic: 'Neural Networks', username: 'Leander' },
+    { year: 'fourth', subject: 'Capstone Project', topic: 'AI App', username: 'Ryan' },
+  ];
+
   const notesContainer = document.querySelector<HTMLDivElement>('.notes_container');
-  const yearSelect = document.getElementById('year') as HTMLSelectElement;
-  const subjectInput = document.getElementById('subject_input') as HTMLSelectElement;
+  const yearSelect = document.getElementById('year') as HTMLSelectElement | null;
+  const subjectInput = document.getElementById('subject_input') as HTMLSelectElement | null;
+  const searchInput = document.querySelector<HTMLInputElement>('.search_input');
 
-  if (!notesContainer || !yearSelect || !subjectInput) {
+  if (!notesContainer || !yearSelect || !subjectInput || !searchInput) {
     console.error('Required DOM elements not found.');
     return;
   }
 
-  // Function to render filtered notes
+  // Render filtered notes
   function renderNotes(filteredNotes: Note[]): void {
-    notesContainer.innerHTML = ''; // Clear current content
+    notesContainer.innerHTML = '';
 
     if (filteredNotes.length === 0) {
       const noFilesMessage = document.createElement('p');
@@ -50,10 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
       fileDiv.innerHTML = `
         <button class="favorites" title="Mark as Favorite"></button>
         <button class="download_button" title="Download"></button>
-        <img src="src/pdf.svg" alt="file type" class="file_type_img">
+        <img src="src/assets/pdf.svg" alt="file type" class="file_type_img">
         <p class="subject_cont"><strong>Subject:</strong> ${subject}</p>
         <p class="topic_cont"><strong>Topic:</strong> ${topic}</p>
-        <img src="src/profile_notes.svg" alt="profile" class="profile">
+        <img src="src/assets/profile_notes.svg" alt="profile" class="profile">
         <p class="user_name_cont"><strong class="username">${username}</strong></p>
       `;
 
@@ -62,21 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Function to filter notes based on year and subject
+  // Filter notes based on user input
   function filterNotes(): void {
     const selectedYear = yearSelect.value;
     const selectedSubject = subjectInput.value;
+    const searchQuery = searchInput.value.toLowerCase();
 
     const filteredNotes = notes.filter((note) => {
       const matchesYear = selectedYear ? note.year === selectedYear : true;
       const matchesSubject = selectedSubject ? note.subject === selectedSubject : true;
-      return matchesYear && matchesSubject;
+      const matchesSearch = searchQuery
+        ? note.subject.toLowerCase().includes(searchQuery) ||
+          note.topic.toLowerCase().includes(searchQuery)
+        : true;
+
+      return matchesYear && matchesSubject && matchesSearch;
     });
 
     renderNotes(filteredNotes);
   }
 
-  // Function to populate subjects based on the selected year
+  // Update subjects dropdown based on selected year
   function updateSubjects(): void {
     const year = yearSelect.value;
     let subjects: string[] = [];
@@ -100,17 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     subjectInput.disabled = false;
-    filterNotes(); // Filter notes whenever the subjects are updated
+    filterNotes();
   }
 
-  // Attach event listeners
+  // Event listeners
   yearSelect.addEventListener('change', () => {
     updateSubjects();
     filterNotes();
   });
 
   subjectInput.addEventListener('change', filterNotes);
+  searchInput.addEventListener('input', filterNotes);
 
-  // Initial render of all notes
+  // Initial render
   renderNotes(notes);
 });

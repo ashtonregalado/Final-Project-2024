@@ -4,7 +4,7 @@ interface Note {
   subject: string;
   topic: string;
   fileName: string;
-  fileData: string | ArrayBuffer | null;
+  fileData: string | ArrayBuffer | null; // This field is not used in the backend API approach but retained for reference.
   dateAdded: Date;
   username: string;
 }
@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const uploadForm = document.getElementById('upload_form') as HTMLFormElement;
   const yearSelect = document.getElementById('year') as HTMLSelectElement;
   const subjectInput = document.getElementById('subject_input') as HTMLSelectElement;
-  // const notesContainer = document.querySelector('.notes_container') as HTMLDivElement;
 
   // Function to update subjects based on the selected year
   function updateSubjects(): void {
@@ -38,47 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
       subjectInput.appendChild(option);
     });
 
-    subjectInput.disabled = false;
+    subjectInput.disabled = subjects.length === 0;
   }
 
   yearSelect.addEventListener('change', updateSubjects);
 
-  // Function to display notes
-  // function displayNotes(): void {
-  //   const notes: Note[] = JSON.parse(localStorage.getItem('notes') || '[]');
-  //   notesContainer.innerHTML = '';
-
-  //   if (notes.length === 0) {
-  //     notesContainer.innerHTML = '<p>No notes uploaded yet.</p>';
-  //     return;
-  //   }
-
-  //   notes.forEach((note) => {
-  //     const noteBox = document.createElement('div');
-  //     noteBox.classList.add('notes_cont_box');
-
-  //     noteBox.innerHTML = `
-  //       <button class="favorites">
-  //           <!-- SVG Icon -->
-  //       </button>
-  //       <button class="download_button">
-  //           <!-- SVG Icon -->
-  //       </button>
-  //       <img src="src/pdf.svg" alt="file type" class="file_type_img">
-  //       <p class="subject_cont"><strong>Subject:</strong> ${note.subject}</p>
-  //       <p class="topic_cont"><strong>Topic:</strong> ${note.topic}</p>
-  //       <img src="src/profile_notes.svg" alt="profile" class="profile">
-  //       <p class="user_name_cont">
-  //           <strong class="username">${note.username || 'Anonymous'}</strong>
-  //       </p>
-  //     `;
-
-  //     notesContainer.appendChild(noteBox);
-  //   });
-  // }
-
-  // Handle form submission
-  uploadForm.addEventListener('submit', function (event: Event) {
+  // Handle form submission with API integration
+  uploadForm.addEventListener('submit', async function (event: Event) {
     event.preventDefault();
 
     const year = yearSelect.value;
@@ -91,38 +56,42 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Example username (replace with dynamic data if available)
-    const username = 'Leander Galido';
+    const username = 'Leander Galido'; // Example username
 
-    // Convert the file to Base64
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const fileData = e.target?.result; // Base64 string
+    const formData = new FormData();
+    formData.append('year', year);
+    formData.append('subject', subject);
+    formData.append('topic', topic);
+    formData.append('file', fileUpload);
+    formData.append('username', username);
 
-      const note: Note = {
-        year: year,
-        subject: subject,
-        topic: topic,
-        fileName: fileUpload.name,
-        fileData: fileData,
-        dateAdded: new Date(),
-        username: username,
-      };
+    try {
+      const response = await fetch('http://localhost:5000/upload', {
+        method: 'POST',
+        body: formData,
+      });
 
-      const notes: Note[] = JSON.parse(localStorage.getItem('notes') || '[]');
-      notes.push(note);
-      localStorage.setItem('notes', JSON.stringify(notes));
+      if (!response.ok) {
+        throw new Error('Failed to upload file');
+      }
 
+      const note = await response.json();
+      console.log('Uploaded note:', note);
+
+      alert('File uploaded successfully!');
       uploadForm.reset();
-      subjectInput.disabled = true;
+      subjectInput.disabled = true; // Disable until the user selects a year
 
-      // Optionally, redirect to Index Page
+      // Redirect to the home page or refresh
       window.location.href = 'home_page.html';
-    };
-
-    reader.readAsDataURL(fileUpload);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Error uploading file.');
+    }
   });
 
-  // Optionally, display notes on the upload page
-  // displayNotes();
+  // Initialize subject dropdown if a year is preselected
+  if (yearSelect.value) {
+    updateSubjects();
+  }
 });
