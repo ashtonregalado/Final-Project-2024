@@ -1,0 +1,211 @@
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.share {
+    color: #007bff;
+}
+.search_input {
+    width: 200px;
+}
+.navbar-nav .nav-item + .nav-item {
+    margin-left: 15px;
+}
+
+
+/* For side modals*/
+
+/* Styling the container to make sure the left content is on the left side */
+/* Left-side modal styling (no animations) */
+.left_side_modal {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 300px; /* Limit the width for the left content */
+    background-color: #bbc9d7;
+    border-radius: 10px; /* Slightly round the corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow */
+    margin-bottom: 10px;
+}
+
+/* List styling */
+.side_options {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.li_side {
+    margin: 10px 0;
+}
+
+/* Sidebar links - Adding a smooth hover effect */
+.side-link {
+    position: relative;
+    background-color: #007bff;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+.side-link:hover {
+    background-color: #0056b3;
+    transform: translateX(10px) scale(1.1); /* Slide and scale effect */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.side-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ffffff;
+    transition: width 0.3s ease-out;
+}
+
+.side-link:hover::before {
+    width: 100%;
+}
+
+/* Add Note Button Styling */
+.add_notes_button {
+    margin-top: 20px;
+    width: 60%;
+    margin-left: 20%;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease-in-out;
+    text-transform: uppercase; /* Make the text uppercase */
+}
+
+.add_notes_button:hover {
+    background-color: #0056b3;
+    transform: translateY(-5px) scale(1.1); /* Slight upward movement and enlargement */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow */
+    transition: all 0.4s ease-in-out;
+}
+
+.add_notes_button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
+/* Underline styling for the heading */
+.underline {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 50%;
+    border-bottom: 2px solid #007bff; /* Blue underline */
+}
+
+/* Year level label styling */
+.year_lev {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Form group and labels */
+.year_level,
+.subjects_label {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Form control styling */
+.form-control {
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+
+/* Ensure the left content stays on the left side */
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.right_side {
+    border-radius: 5px;
+    flex: 3;
+    padding: 10px;
+    margin-right: 20px;
+    background-color: #bbc9d7;
+}
+
+.mt-3 {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.mt-md-5 {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.notes_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Add space between each note box */
+}
+
+.notes_cont_box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 100%;
+    max-width: 300px; /* Set a max-width to prevent too large boxes */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+.file_type_img,
+.profile {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.favorites, .download_button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.favorites:hover, .download_button:hover {
+    background-color: #0056b3;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.subject_cont, .topic_cont {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.user_name_cont {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
