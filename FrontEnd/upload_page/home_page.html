@@ -76,54 +76,42 @@
         <button class="add_notes_button" onclick="window.location.href='upload_page.html';">Add Note</button>  
         <h1 class = "underline">_____________</h1>  
         <h4 class = "year_lev">Year Level</h4>
+        <form id="upload_form">
+            <label for="year" class="year_level">Select Year:</label>
+            <select id="year">
+                <option value="">Select Year</option>
+                <option value="first">First Year</option>
+                <option value="second">Second Year</option>
+                <option value="third">Third Year</option>
+                <option value="fourth">Fourth Year</option>
+            </select>
 
-        <label for="1st_year_options" class = "side_label">First Year</label>
-        <select id="first_year_option" name="1st_year_sub_option">
-            <option value="">Select Subject:</option>
-            <option value="Calculus I">Calulus I</option>
-            <option value="Discrete Math I">Discrete Math I</option>
-            <option value="Chemistry">Chemistry</option>
-            <option value="General Math">General Math</option>
-            <option value="Calculus II">Calculus II</option>
-            <option value="Computer Aided Design">Computer Aided Design</option>
-            <option value="Physics I">Physics I</option>
-        </select>
-
-        <label for="2nd_year_options" class = "side_label2">Second Year</label>
-        <select id="second_year_option" name="second_year_sub_option">
-            <option value="">Select Subject:</option>
-            <option value="Calculus I">Calulus I</option>
-            <option value="Discrete Math I">Discrete Math I</option>
-            <option value="Chemistry">Chemistry</option>
-            <option value="General Math">General Math</option>
-        </select>
-
-        <label for="3rd_year_options" class = "side_label2">Third Year</label>
-        <select id="first_year_option" name="1st_year_sub_option">
-            <option value="">Select Subject:</option>
-            <option value="Calculus I">Calulus I</option>
-            <option value="Discrete Math I">Discrete Math I</option>
-            <option value="Chemistry">Chemistry</option>
-            <option value="General Math">General Math</option>
-        </select>
-
-        <label for="3rd_year_options" class = "side_label2">Fourth Year</label>
-        <select id="first_year_option" name="1st_year_sub_option">
-            <option value="">Select Subject:</option>
-            <option value="Calculus I">Calulus I</option>
-            <option value="Discrete Math I">Discrete Math I</option>
-            <option value="Chemistry">Chemistry</option>
-            <option value="General Math">General Math</option>
-        </select>
-
+            <label for="subjects" class="subjects_label">Select Subject:</label>
+            <select id="subject_input" disabled required>
+                <option value="">Select Subject</option>
+            </select>
     </div>
 
 
 
     <div class="notes_container">
-        <!-- Uploaded notes will appear here -->
+
+        <!-- <a href="file_preview_page.html" class = "notes_lists">
+            <div class="notes_cont_box">
+                <button class="favorites" title="Mark as Favorite"></button>
+                <button class="download_button" title="Download"></button>
+                <img src="src/pdf.svg" alt="file type" class="file_type_img">
+                <p class="subject_cont"><strong>Subject:</strong> ${subject}</p>
+                <p class="topic_cont"><strong>Topic:</strong> ${topic}</p>
+                <img src="src/profile_notes.svg" alt="profile" class="profile">
+                <p class="user_name_cont"><strong class="username">${username}</strong></p>
+            </div>
+        </a> -->
+
+
     </div> 
 
     <script src = "src/home_page.ts"></script>
 </body>
 </html>
+

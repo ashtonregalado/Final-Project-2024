@@ -18,11 +18,11 @@
 
     <div class="login_container_style">
       <h1 class="sign_up_label">Sign up</h1>
-      <input type="text" id="username_input" class="username_input_type" placeholder="Username" maxlength="15" />
-      <input type="email" id="email_input" class="email_input_style" placeholder="Email" maxlength="35" />
+      <input type="text" id="username_input" class="username_input_type" placeholder="Username" maxlength="15" minlength="4"/>
+      <input type="email" id="email_input" class="email_input_style" placeholder="Email" maxlength="35" minlength="15"/>
 
       <div class="password-container">
-        <input type="password" id="password_input" class="password_input_style" placeholder="Password" maxlength="16" />
+        <input type="password" id="password_input" class="password_input_style" placeholder="Password" maxlength="16" minlength="8"/>
         <button id="togglePassword" class="toggle-button">
           <img src="src/images/hide.png" alt="Show Password" id="toggleIcon" class="icon" />
         </button>
