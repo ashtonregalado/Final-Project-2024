@@ -11,8 +11,7 @@ submitButton.addEventListener('click', (event) => {
     if (
         firstName.value === "" ||
         lastName.value === "" ||
-        email.value === "" ||
-        phoneNumber.value === ""
+        email.value === ""
 
     ) {
         alert("Some fields are blank!")
@@ -22,7 +21,6 @@ submitButton.addEventListener('click', (event) => {
     console.log("first name: ", firstName.value);
     console.log("last name: ", lastName.value);
     console.log("email: ", email.value);
-    console.log("phone number: ", phoneNumber.value);
     console.log("field: ,", field.value);
     alert("form has been submitted!");
 })

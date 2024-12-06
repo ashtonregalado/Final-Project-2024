@@ -1,3 +1,5 @@
+import fetchFromDB from "./fetchFromDB";
+
 // Define the interface for a note
 interface Note {
   year?: string;
@@ -8,7 +10,11 @@ interface Note {
   fileName?: string;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+
+  // ari example backend usage. use as reference
+  const halinSaDB = await fetchFromDB()
+
   // Retrieve uploaded notes from localStorage using the correct key
   const notes: Note[] = JSON.parse(localStorage.getItem('notes') || '[]');
 
@@ -24,14 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to render filtered notes
   function renderNotes(filteredNotes: Note[]): void {
-    notesContainer.innerHTML = ''; // Clear current content
+    notesContainer!.innerHTML = ''; // Clear current content
 
     if (filteredNotes.length === 0) {
       const noFilesMessage = document.createElement('p');
       noFilesMessage.textContent = 'No files available for the selected filters.';
       noFilesMessage.style.textAlign = 'center';
       noFilesMessage.style.marginTop = '20px';
-      notesContainer.appendChild(noFilesMessage);
+      notesContainer!.appendChild(noFilesMessage);
       return;
     }
 
@@ -48,17 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const username = note.username || 'Anonymous';
 
       fileDiv.innerHTML = `
-        <button class="favorites" title="Mark as Favorite"></button>
-        <button class="download_button" title="Download"></button>
+      <div>
+        <button class="download_button" title="Download">${halinSaDB}</button>
         <img src="src/pdf.svg" alt="file type" class="file_type_img">
         <p class="subject_cont"><strong>Subject:</strong> ${subject}</p>
         <p class="topic_cont"><strong>Topic:</strong> ${topic}</p>
         <img src="src/profile_notes.svg" alt="profile" class="profile">
         <p class="user_name_cont"><strong class="username">${username}</strong></p>
+      </div>
       `;
 
       fileLink.appendChild(fileDiv);
-      notesContainer.appendChild(fileLink);
+      notesContainer!.appendChild(fileLink);
     });
   }
 
