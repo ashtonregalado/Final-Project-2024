@@ -1,5 +1,4 @@
 // Create Account Page
-// import { User } from '../../FrontEnd/upload_page/src/account';
 
 const usernameInput = document.getElementById('username_input') as HTMLInputElement;
 const emailInput = document.getElementById('email_input') as HTMLInputElement;
@@ -62,7 +61,8 @@ signupButton.addEventListener('click', async () => {
     if (response.ok) {
       const newAccount = await response.json();
       console.log('Account added', newAccount);
-      alert(`Account created successfully! Welcome, ${newAccount.username}.`);
+      localStorage.setItem('userID', newAccount.userId);
+      alert(`Account created successfully! Welcome, ${newAccount.userName}.`);
       // Clear input fields
       usernameInput.value = '';
       emailInput.value = '';

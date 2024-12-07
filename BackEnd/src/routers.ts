@@ -36,6 +36,119 @@ const upload = multer({
 
 const router = express.Router();
 
+//Router for adding a new account to the database
+
+router.post('/add-account', upload.single('ProfilePicture'), async (req: Request, res: Response) => {
+  const { UserName, Email, Password } = req.body;
+  const profilePicture = req.file ? req.file.path : null;
+
+  try {
+    const result = await pool.query('INSERT INTO users (username, email, user_password, profile_picture) VALUES ($1, $2, $3, $4) RETURNING *', [UserName, Email, Password, profilePicture]);
+    const userID = result.rows[0].user_id;
+    const userName = result.rows[0].user_name;
+    res.status(201).json({
+      message: 'Account created successfully',
+      userId: userID, // Send back the userId to the frontend
+      userName: userName,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+//Router to check if account already exist in the database
+router.post('/validate-account', async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  try {
+    const result = await pool.query('SELECT user_password FROM users WHERE email = $1', [email]);
+    if (result.rowCount === 0) {
+      return res.json({ exists: false, validPassword: false });
+    }
+    const userId = result.rows[0].user_id;
+    const userName = result.rows[0].user_name;
+    const stored_password = result.rows[0].user_password;
+    const isPasswordCorrect = stored_password == password;
+    if (!isPasswordCorrect) {
+      return res.json({
+        exists: true,
+        validPassword: !isPasswordCorrect,
+      });
+    }
+
+    return res.json({
+      exists: true,
+      validPassword: true,
+      userId,
+      userName,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Database error' });
+  }
+});
+
+//Router for fetching data about the logged in user
+
+router.get('/fetch-userData', async (req: Request, res: Response) => {
+  const { userID } = req.query;
+
+  if (!userID) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+
+  try {
+    // Query user data from the database
+    const result = await pool.query('SELECT * FROM users WHERE user_id = $1', [userID]);
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Send the user data as response
+    const user = result.rows[0];
+    return res.json({
+      userId: user.user_id,
+      userName: user.username,
+      email: user.mail,
+      profilePicture: user.profile_picture,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Database error' });
+  }
+});
+
+//Router for fetching notes added by the user
+router.get('/fetch-userNotes', async (req: Request, res: Response) => {
+  const { userID } = req.query;
+
+  if (!userID) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+
+  try {
+    // Query user data from the database
+    const result = await pool.query('SELECT * FROM note WHERE user_id = $1', [userID]);
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Send the user data as response
+    const note = result.rows[0];
+    return res.json({
+      userId: note.user_id,
+      topic: note.topic,
+      filepath: note.filepath,
+      uploadDate: note.upload_date,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Database error' });
+  }
+});
+
 router.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 router.post('/add-notes', upload.single('filepath'), async (req: Request, res: Response) => {
@@ -76,6 +189,7 @@ router.post('/add-notes', upload.single('filepath'), async (req: Request, res: R
 
 //Route to get the yearlevel and subject id
 router.post('/yearlevel_subject-id', async (req: Request, res: Response) => {
+  console.log('Request body:', req.body);
   const { yearLevelName, subjectName } = req.body;
 
   if (!yearLevelName || !subjectName) {
@@ -113,13 +227,13 @@ router.post('/yearlevel_subject-id', async (req: Request, res: Response) => {
 
 //For Deleting Notes in the Database. Use the data-note-id attribute in html to use as parameter for deleting.
 router.delete('/delete-notes', async (req: Request, res: Response) => {
-  const { noteID } = req.query;
+  const { note_id } = req.query;
   try {
-    const result = await pool.query('DELETE FROM note WHERE note_id = $1 RETURNING *', [noteID]);
+    const result = await pool.query('DELETE FROM note WHERE note_id = $1 RETURNING *', [note_id]);
     if (result.rowCount === 0) {
       return res.status(404).json({ message: 'Note not found' });
     }
-    res.status(200).json({ message: `Note with ID ${noteID} deleted successfully.` });
+    res.status(200).json({ message: `Note with ID ${note_id} deleted successfully.` });
   } catch (error) {
     console.error('Error deleting note:', error);
     res.status(500).json({ message: 'Server error' });
@@ -136,44 +250,6 @@ router.get('/get-myNotes', async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error fetching notes:', error);
     res.status(500).json({ message: 'Failed to fetch notes' });
-  }
-});
-
-//Router for adding a new account to the database
-
-router.post('/add-account', upload.single('ProfilePicture'), async (req: Request, res: Response) => {
-  const { UserName, Email, Password } = req.body;
-  const profilePicture = req.file ? req.file.path : null;
-
-  try {
-    const result = await pool.query('INSERT INTO users (username, email, user_password, profile_picture) VALUES ($1, $2, $3, $4) RETURNING *', [UserName, Email, Password, profilePicture]);
-    const userID = result.rows[0].user_id;
-    res.status(201).json({ message: 'Account added successfully', userID });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-//Router to check if account already exist in the database
-router.post('/validate-account', async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-  try {
-    const result = await pool.query('SELECT user_password FROM users WHERE email = $1', [email]);
-    if (result.rowCount === 0) {
-      return res.json({ exists: false, validPassword: false });
-    }
-
-    const stored_password = result.rows[0].user_password;
-    const isPasswordCorrect = stored_password == password;
-
-    return res.json({
-      exists: true,
-      validPassword: isPasswordCorrect,
-    });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Database error' });
   }
 });
 
@@ -196,22 +272,27 @@ router.get('/display-notes', async (req: Request, res: Response) => {
     const results = await pool.query('SELECT * FROM note');
     res.json(results.rows);
   } catch (error) {
-    console.error('Error fetching characters:', error);
-    res.status(500).send('Failed to fetch characters.');
+    console.error('Error fetching notes:', error);
+    res.status(500).send('Failed to fetch notes.');
   }
 });
 
 //For Adding Notes to the SavedNotes
 router.post('/save-note', async (req: Request, res: Response) => {
-  const { noteid, userid } = req.body;
+  const { note_id, user_id } = req.body;
+
+  if (!note_id || !user_id) {
+    return res.status(400).json({ message: 'note_id and user_id are required' });
+  }
+
   try {
-    const result = await pool.query('INSERT INTO saved_notes (note_id, user_id) VALUES ($1, $2) RETURNING *', [noteid, userid]);
+    const result = await pool.query('INSERT INTO saved_notes (note_id, user_id) VALUES ($1, $2) RETURNING *', [note_id, user_id]);
     res.status(201).json({
       message: 'Note saved successfully',
       savedNote: result.rows[0],
     });
   } catch (error) {
-    console.error('Error deleting note:', error);
+    console.error('Error saving note:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -219,16 +300,16 @@ router.post('/save-note', async (req: Request, res: Response) => {
 //For Deleting Notes to the SvedNotes
 
 router.delete('/unsave-note', async (req: Request, res: Response) => {
-  const { noteid, userid } = req.params;
+  const { saved_notes_id } = req.query;
 
   try {
-    const result = await pool.query('DELETE FROM saved_notes WHERE note_id = $1 and user_id = $2', [noteid, userid]);
+    const result = await pool.query('DELETE FROM saved_notes WHERE saved_notes_id = $1 RETURNING *', [saved_notes_id]);
     if (result.rowCount === 0) {
-      return res.status(404).json({ message: 'Note not found' });
+      return res.status(404).json({ message: 'Saved Note not found' });
     }
-    res.status(200).json({ message: `Note with ID ${noteid} deleted successfully.` });
+    res.status(200).json({ message: `Saved Note with ID ${saved_notes_id} unsave successfully.` });
   } catch (error) {
-    console.error('Error deleting note:', error);
+    console.error('Error unsaving note:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -236,19 +317,25 @@ router.delete('/unsave-note', async (req: Request, res: Response) => {
 //For displaying savednotes by the user in the saved notes screen
 
 router.get('/display-saved_notes', async (req: Request, res: Response) => {
-  const { userid } = req.query;
+  const { user_id } = req.query;
+
+  if (!user_id) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
 
   try {
     const results = await pool.query(
-      `SELECT note.* 
-      FROM note INNER JOIN saved_notes ON notes.id = saved_notes.note_id 
+      `SELECT note.*, saved_notes.saved_notes_id 
+      FROM note 
+      INNER JOIN saved_notes ON note.note_id = saved_notes.note_id 
       WHERE saved_notes.user_id = $1`,
-      [userid]
+      [user_id]
     );
 
-    if (results.rowCount == 0) {
+    if (results.rowCount === 0) {
       return res.status(404).json({ message: 'Notes not found' });
     }
+
     res.json(results.rows);
   } catch (error) {
     console.error('Error getting notes:', error);
