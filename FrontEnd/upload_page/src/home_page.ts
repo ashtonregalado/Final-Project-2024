@@ -1,4 +1,4 @@
-import fetchFromDB from "./fetchFromDB";
+import fetchFromDB from './fetchFromDB';
 
 // Define the interface for a note
 interface Note {
@@ -11,9 +11,8 @@ interface Note {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-
   // ari example backend usage. use as reference
-  const halinSaDB = await fetchFromDB()
+  const halinSaDB = await fetchFromDB();
 
   // Retrieve uploaded notes from localStorage using the correct key
   const notes: Note[] = JSON.parse(localStorage.getItem('notes') || '[]');

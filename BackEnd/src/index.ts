@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
 import sendEmail from './send-email';
-import cors from "cors";
+import cors from 'cors';
 
 const app = express();
 const PORT = 3000;
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 
 app.get('/api', (req: Request, res: Response) => {
@@ -15,17 +15,17 @@ app.get('/api', (req: Request, res: Response) => {
 app.post('/api/send-email', async (req: Request, res: Response) => {
   try {
     const { name, email, message } = req.body;
-    await sendEmail(name, email, message)
-    res.status(200).send("Email has been sent!")
+    await sendEmail(name, email, message);
+    res.status(200).send('Email has been sent!');
   } catch (error) {
-    console.log(error)
-    res.status(500).send("something went wrong")
+    console.log(error);
+    res.status(500).send('something went wrong');
   }
-})
+});
 
-app.get('/awit', (req: Request, res:Response) => {
-  res.status(200).send("sample")
-})
+app.get('/awit', (req: Request, res: Response) => {
+  res.status(200).send('sample');
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
