@@ -16,8 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const notesContainer = document.querySelector<HTMLDivElement>('.notes_container');
   const yearSelect = document.getElementById('year') as HTMLSelectElement;
   const subjectInput = document.getElementById('subject_input') as HTMLSelectElement;
+  const searchInput = document.getElementById('search_input') as HTMLInputElement; // Search input field
 
-  if (!notesContainer || !yearSelect || !subjectInput) {
+  if (!notesContainer || !yearSelect || !subjectInput || !searchInput) {
     console.error('Required DOM elements not found.');
     return;
   }
@@ -62,15 +63,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Function to filter notes based on year and subject
+  // Function to filter notes based on year, subject, and search query (search by subject or topic)
   function filterNotes(): void {
     const selectedYear = yearSelect.value;
     const selectedSubject = subjectInput.value;
+    const searchQuery = searchInput.value.trim().toLowerCase(); // Get the search query
 
     const filteredNotes = notes.filter((note) => {
       const matchesYear = selectedYear ? note.year === selectedYear : true;
       const matchesSubject = selectedSubject ? note.subject === selectedSubject : true;
-      return matchesYear && matchesSubject;
+
+      // Search by subject or topic
+      const matchesSearch =
+        !searchQuery || 
+        (note.subject && note.subject.toLowerCase().includes(searchQuery)) ||
+        (note.topic && note.topic.toLowerCase().includes(searchQuery));
+
+      return matchesYear && matchesSubject && matchesSearch;
     });
 
     renderNotes(filteredNotes);
@@ -111,6 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   subjectInput.addEventListener('change', filterNotes);
 
+  // Add event listener for search input (search by subject or topic)
+  searchInput.addEventListener('input', filterNotes);
+
   // Initial render of all notes
   renderNotes(notes);
 });
+
