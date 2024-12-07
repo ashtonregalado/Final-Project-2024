@@ -18,6 +18,10 @@
     "globals": "^15.11.0",
     "husky": "^9.1.6",
     "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.16",
     "typescript-eslint": "^8.11.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
   }
 }

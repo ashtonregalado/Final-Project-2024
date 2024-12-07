@@ -1,26 +1,34 @@
-const firstName = document.getElementById('first_name') as HTMLInputElement;
-const lastName = document.getElementById('last_name') as HTMLInputElement;
-const email = document.getElementById('email') as HTMLInputElement;
-const phoneNumber = document.getElementById('phone_number') as HTMLInputElement;
-const submitButton = document.getElementById('submit_button') as HTMLButtonElement;
-const field = document.getElementById('field') as HTMLTextAreaElement;
+import axios from "axios";
 
-submitButton.addEventListener('click', (event) => {
+const name = document.getElementById('name') as HTMLInputElement;
+const email = document.getElementById('email') as HTMLInputElement;
+const message = document.getElementById('message') as HTMLTextAreaElement;
+const submitButton = document.getElementById('submit_button') as HTMLButtonElement;
+
+submitButton.addEventListener('click', async (event) => {
     event.preventDefault();
     // implement submit functionality here:
     if (
-        firstName.value === "" ||
-        lastName.value === "" ||
-        email.value === ""
+        name.value === "" ||
+        email.value === "" ||
+        message.value === ""
 
     ) {
         alert("Some fields are blank!")
         return;
     }
     
-    console.log("first name: ", firstName.value);
-    console.log("last name: ", lastName.value);
+    console.log("first name: ", name.value);
     console.log("email: ", email.value);
-    console.log("field: ,", field.value);
+    console.log("field: ,", message.value);
+
+    const response = await axios.post("http://localhost:3000/api/send-email", {
+        name: name.value,
+        email: email.value,
+        message: message.value
+    });
+
+    console.log(response.data);
+
     alert("form has been submitted!");
 })
