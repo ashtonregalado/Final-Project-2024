@@ -74,10 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const matchesSubject = selectedSubject ? note.subject === selectedSubject : true;
 
       // Search by subject or topic
-      const matchesSearch =
-        !searchQuery || 
-        (note.subject && note.subject.toLowerCase().includes(searchQuery)) ||
-        (note.topic && note.topic.toLowerCase().includes(searchQuery));
+      const matchesSearch = !searchQuery || (note.subject && note.subject.toLowerCase().includes(searchQuery)) || (note.topic && note.topic.toLowerCase().includes(searchQuery));
 
       return matchesYear && matchesSubject && matchesSearch;
     });
@@ -126,4 +123,3 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial render of all notes
   renderNotes(notes);
 });
-
