@@ -58,7 +58,7 @@ router.post('/add-account', upload.single('ProfilePicture'), async (req: Request
 });
 
 //Router to check if account already exist in the database
-router.post('/validate-account', async (req: Request, res: Response) => {
+router.post('/validate-account', async (req: Request, res: Response): Promise<any> => {
   const { email, password } = req.body;
   try {
     const result = await pool.query('SELECT user_password FROM users WHERE email = $1', [email]);
@@ -90,7 +90,7 @@ router.post('/validate-account', async (req: Request, res: Response) => {
 
 //Router for fetching data about the logged in user
 
-router.get('/fetch-userData', async (req: Request, res: Response) => {
+router.get('/fetch-userData', async (req: Request, res: Response): Promise<any> => {
   const { userID } = req.query;
 
   if (!userID) {
@@ -120,7 +120,7 @@ router.get('/fetch-userData', async (req: Request, res: Response) => {
 });
 
 //Router for fetching notes added by the user
-router.get('/fetch-userNotes', async (req: Request, res: Response) => {
+router.get('/fetch-userNotes', async (req: Request, res: Response): Promise<any> => {
   const { userID } = req.query;
 
   if (!userID) {
@@ -151,7 +151,7 @@ router.get('/fetch-userNotes', async (req: Request, res: Response) => {
 
 router.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-router.post('/add-notes', upload.single('filepath'), async (req: Request, res: Response) => {
+router.post('/add-notes', upload.single('filepath'), async (req: Request, res: Response): Promise<any> => {
   const { topic, yearlevel_id, subject_id, upload_date } = req.body;
   const user_id = parseInt(req.body.user_id);
   // const yearlevel_id = parseInt(req.body.yearlevel_id);
@@ -188,7 +188,7 @@ router.post('/add-notes', upload.single('filepath'), async (req: Request, res: R
 });
 
 //Route to get the yearlevel and subject id
-router.post('/yearlevel_subject-id', async (req: Request, res: Response) => {
+router.post('/yearlevel_subject-id', async (req: Request, res: Response): Promise<any> => {
   console.log('Request body:', req.body);
   const { yearLevelName, subjectName } = req.body;
 
@@ -226,7 +226,7 @@ router.post('/yearlevel_subject-id', async (req: Request, res: Response) => {
 });
 
 //For Deleting Notes in the Database. Use the data-note-id attribute in html to use as parameter for deleting.
-router.delete('/delete-notes', async (req: Request, res: Response) => {
+router.delete('/delete-notes', async (req: Request, res: Response): Promise<any> => {
   const { note_id } = req.query;
   try {
     const result = await pool.query('DELETE FROM note WHERE note_id = $1 RETURNING *', [note_id]);
@@ -251,10 +251,10 @@ router.get('/get-myNotes', async (req: Request, res: Response) => {
        FROM note
        INNER JOIN subject ON note.subject_id = subject.subject_id
        INNER JOIN users ON note.user_id = users.user_id
-       WHERE note.user_id = $1`, 
-       [user_id]
+       WHERE note.user_id = $1`,
+      [user_id]
     );
-    
+
     // Respond with the notes, including subject_name and username
     res.status(200).json(result.rows);
   } catch (error) {
@@ -262,7 +262,6 @@ router.get('/get-myNotes', async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Failed to fetch notes' });
   }
 });
-
 
 //For Searching Notes
 router.get('/search-notes', async (req: Request, res: Response) => {
@@ -280,7 +279,9 @@ router.get('/search-notes', async (req: Request, res: Response) => {
 //For Displaying All Notes in the Database to the Homescreen
 router.get('/display-notes', async (req: Request, res: Response) => {
   try {
-    const results = await pool.query('SELECT note.*, subject.subject_name, users.username FROM note INNER JOIN subject ON note.subject_id = subject.subject_id INNER JOIN users ON note.user_id = users.user_id;');
+    const results = await pool.query(
+      'SELECT note.*, subject.subject_name, users.username FROM note INNER JOIN subject ON note.subject_id = subject.subject_id INNER JOIN users ON note.user_id = users.user_id;'
+    );
     res.json(results.rows);
   } catch (error) {
     console.error('Error fetching notes:', error);
@@ -289,7 +290,7 @@ router.get('/display-notes', async (req: Request, res: Response) => {
 });
 
 //For Adding Notes to the SavedNotes
-router.post('/save-note', async (req: Request, res: Response) => {
+router.post('/save-note', async (req: Request, res: Response): Promise<any> => {
   const { note_id, user_id } = req.body;
 
   if (!note_id || !user_id) {
@@ -310,7 +311,7 @@ router.post('/save-note', async (req: Request, res: Response) => {
 
 //For Deleting Notes to the SvedNotes
 
-router.delete('/unsave-note', async (req: Request, res: Response) => {
+router.delete('/unsave-note', async (req: Request, res: Response): Promise<any> => {
   const { saved_notes_id } = req.query;
 
   try {
@@ -327,7 +328,7 @@ router.delete('/unsave-note', async (req: Request, res: Response) => {
 
 //For displaying savednotes by the user in the saved notes screen
 
-router.get('/display-saved_notes', async (req: Request, res: Response) => {
+router.get('/display-saved_notes', async (req: Request, res: Response): Promise<any> => {
   const { user_id } = req.query;
 
   if (!user_id) {
@@ -335,7 +336,6 @@ router.get('/display-saved_notes', async (req: Request, res: Response) => {
   }
 
   try {
-
     const results = await pool.query(
       `SELECT 
         note.*, 
