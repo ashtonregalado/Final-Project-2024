@@ -31,13 +31,21 @@ const fetchNotes = async (user_id: string) => {
       return;
     }
 
-    notes.forEach((note: { note_id: number; topic: string; upload_date: string }) => {
+    notes.forEach((note: { note_id: number; topic: string; upload_date: string, username: string; subject_name: string}) => {
       const noteElement = document.createElement('li');
       noteElement.className = 'note';
       noteElement.innerHTML = `
-        <p><strong>Topic:</strong> ${note.topic}</p>
-        <p><strong>Uploaded on:</strong> ${note.upload_date}</p>
-        <button class="delete-button" data-id="${note.note_id}">Delete</button>
+        
+          <div class="notes_cont_box">
+            <button class="save-button" data-id="${note.note_id}">Save</button>
+            <button class="download_button" title="Download">Download</button>
+            <img src="src/pdf.svg" alt="file type" class="file_type_img">
+            <p class="subject_cont"><strong>Subject:</strong> ${note.subject_name}</p>
+            <p class ="topic_cont"><strong>Topic:</strong> ${note.topic}</p>
+            <p class = "date_cont"><strong class = "date_holder">Uploaded on:</strong> ${note.upload_date}</p>
+            <img src="src/profile_notes.svg" alt="profile" class="profile">
+            <p class="user_name_cont"><strong class="username">${note.username}</strong></p>
+          </div>
       `;
 
       const deleteButton = noteElement.querySelector('.delete-button') as HTMLButtonElement;

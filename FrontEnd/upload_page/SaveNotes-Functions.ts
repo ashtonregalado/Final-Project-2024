@@ -19,14 +19,22 @@ const fetchSavedNotes = async (user_id: number) => {
     const savedNotes = await response.json();
     console.log('Fetched saved notes:', savedNotes);
 
-    savedNotes.forEach((savedNote: { saved_notes_id: number; topic: string; upload_date: string }) => {
+    savedNotes.forEach((savedNote: { saved_notes_id: number; topic: string; upload_date: string; subject_name: string; username: string;}) => {
       const noteElement = document.createElement('div');
       noteElement.className = 'note';
       //Add Design of Notes here.
       noteElement.innerHTML = `
-              <p><strong>Topic:</strong> ${savedNote.topic}</p>
-              <p><strong>Uploaded on:</strong> ${savedNote.upload_date}</p>
-              <button class="unsave-button" data-id="${savedNote.saved_notes_id}">unSave</button>
+
+                <div class="notes_cont_box">
+                  <button class="unsaved-button" data-id="${savedNote.saved_notes_id}">unSave</button>
+                  <button class="download_button" title="Download">Download</button>
+                  <img src="src/pdf.svg" alt="file type" class="file_type_img">
+                  <p class="subject_cont"><strong>Subject:</strong>${savedNote.subject_name}</p>
+                  <p class ="topic_cont"><strong>Topic:</strong> ${savedNote.topic}</p>
+                  <p class = "date_cont"><strong class = "date_holder">Uploaded on:</strong> ${savedNote.upload_date}</p>
+                  <img src="src/profile_notes.svg" alt="profile" class="profile">
+                  <p class="user_name_cont"><strong class="username">${savedNote.username}</strong></p>
+                </div>
             `;
 
       const unSaveButton = noteElement.querySelector('.unsave-button') as HTMLButtonElement;

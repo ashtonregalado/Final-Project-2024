@@ -245,13 +245,24 @@ router.get('/get-myNotes', async (req: Request, res: Response) => {
   const { user_id } = req.query;
 
   try {
-    const result = await pool.query('SELECT * FROM note WHERE user_id = $1', [user_id]);
+    // SQL query with JOINs to fetch notes along with username and subject name
+    const result = await pool.query(
+      `SELECT note.*, subject.subject_name, users.username
+       FROM note
+       INNER JOIN subject ON note.subject_id = subject.subject_id
+       INNER JOIN users ON note.user_id = users.user_id
+       WHERE note.user_id = $1`, 
+       [user_id]
+    );
+    
+    // Respond with the notes, including subject_name and username
     res.status(200).json(result.rows);
   } catch (error) {
     console.error('Error fetching notes:', error);
     res.status(500).json({ message: 'Failed to fetch notes' });
   }
 });
+
 
 //For Searching Notes
 router.get('/search-notes', async (req: Request, res: Response) => {
@@ -269,7 +280,7 @@ router.get('/search-notes', async (req: Request, res: Response) => {
 //For Displaying All Notes in the Database to the Homescreen
 router.get('/display-notes', async (req: Request, res: Response) => {
   try {
-    const results = await pool.query('SELECT * FROM note');
+    const results = await pool.query('SELECT note.*, subject.subject_name, users.username FROM note INNER JOIN subject ON note.subject_id = subject.subject_id INNER JOIN users ON note.user_id = users.user_id;');
     res.json(results.rows);
   } catch (error) {
     console.error('Error fetching notes:', error);
@@ -324,10 +335,17 @@ router.get('/display-saved_notes', async (req: Request, res: Response) => {
   }
 
   try {
+
     const results = await pool.query(
-      `SELECT note.*, saved_notes.saved_notes_id 
-      FROM note 
-      INNER JOIN saved_notes ON note.note_id = saved_notes.note_id 
+      `SELECT 
+        note.*, 
+        saved_notes.saved_notes_id,
+        users.username, 
+        subject.subject_name
+      FROM note
+      INNER JOIN saved_notes ON note.note_id = saved_notes.note_id
+      INNER JOIN users ON note.user_id = users.user_id
+      INNER JOIN subject ON note.subject_id = subject.subject_id
       WHERE saved_notes.user_id = $1`,
       [user_id]
     );
