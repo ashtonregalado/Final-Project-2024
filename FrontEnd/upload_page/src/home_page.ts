@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       fileDiv.innerHTML = `
       <div>
-        <button class="download_button" title="Download">${halinSaDB}</button>
+        <button class="download_button" title="Download">Download</button>
         <img src="src/pdf.svg" alt="file type" class="file_type_img">
         <p class="subject_cont"><strong>Subject:</strong> ${subject}</p>
         <p class="topic_cont"><strong>Topic:</strong> ${topic}</p>

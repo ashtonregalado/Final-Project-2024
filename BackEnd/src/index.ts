@@ -14,8 +14,8 @@ app.get('/api', (req: Request, res: Response) => {
 
 app.post('/api/send-email', async (req: Request, res: Response) => {
   try {
-    const { name, email, message } = req.body;
-    await sendEmail(name, email, message);
+    const { FirstName,LastName, email, message } = req.body;
+    await sendEmail(FirstName,LastName, email, message);
     res.status(200).send('Email has been sent!');
   } catch (error) {
     console.log(error);
