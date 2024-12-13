@@ -1,16 +1,23 @@
 //Get the notes in the database that have been added by the user. Uses userId as parameter.
 document.addEventListener('DOMContentLoaded', () => {
-  const userId = localStorage.getItem('userID');
+  const logged_account = localStorage.getItem('logged-email');
+  const userId = logged_account ? localStorage.getItem(logged_account) : null;
+
+  if (!userId) {
+    console.error('No logged account found or invalid user ID');
+    return;
+  }
+
   const currentPath = window.location.pathname;
 
   // Check if we are on the "My Notes" page
-  if (currentPath.includes('myNotes.html') && userId) {
-    fetchNotes(userId);
+  if (currentPath.includes('myNotes.html')) {
+    fetchMyNotes(Number(userId));
   }
 });
 
 // Fetch Notes Function
-const fetchNotes = async (user_id: string) => {
+const fetchMyNotes = async (user_id: number) => {
   try {
     const notesContainer = document.getElementById('myNotes') as HTMLUListElement;
 
@@ -31,7 +38,7 @@ const fetchNotes = async (user_id: string) => {
       return;
     }
 
-    notes.forEach((note: { note_id: number; topic: string; upload_date: string, username: string; subject_name: string}) => {
+    notes.forEach((note: { note_id: number; topic: string; upload_date: string; username: string; subject_name: string }) => {
       const noteElement = document.createElement('li');
       noteElement.className = 'note';
       noteElement.innerHTML = `
@@ -83,5 +90,3 @@ const deleteNote = async (note_id: number) => {
     alert('An error occurred while deleting the note.');
   }
 };
-
-//For displaying the notes in the my notes screen when navigating to it.

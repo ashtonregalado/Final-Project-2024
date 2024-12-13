@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Check if we are on the "My Notes" page
   if (currentPath.includes('home_page.html')) {
-    fetchNotes();
+    fetchPublicNotes();
   }
 });
 
 // Fetch Notes Function
-const fetchNotes = async () => {
+const fetchPublicNotes = async () => {
   try {
     const notesContainer = document.getElementById('publicNotes') as HTMLUListElement;
 
@@ -31,7 +31,7 @@ const fetchNotes = async () => {
       return;
     }
 
-    notes.forEach((note: { note_id: number; topic: string; upload_date: string; username: string; subject_name: string}) => {
+    notes.forEach((note: { note_id: number; topic: string; upload_date: string; username: string; subject_name: string }) => {
       const noteElement = document.createElement('li');
       noteElement.className = 'note';
       noteElement.innerHTML = `
@@ -53,9 +53,15 @@ const fetchNotes = async () => {
       if (saveButton) {
         saveButton.addEventListener('click', () => {
           const noteId = parseInt(saveButton.getAttribute('data-id') || '', 10);
-          const userId = localStorage.getItem('userID');
+          const logged_account = localStorage.getItem('logged-email');
+          const userId = logged_account ? localStorage.getItem(logged_account) : null;
+
+          if (!userId) {
+            console.error('No logged account found or invalid user ID');
+            return;
+          }
           if (noteId) {
-            saveNote(noteId, userId);
+            saveNote(noteId, Number(userId));
           }
         });
       }

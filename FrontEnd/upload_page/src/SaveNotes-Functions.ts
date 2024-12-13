@@ -1,10 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const userId = localStorage.getItem('userID');
+  const logged_account = localStorage.getItem('logged-email');
+  const userId = logged_account ? localStorage.getItem(logged_account) : null;
+
+  if (!userId) {
+    console.error('No logged account found or invalid user ID');
+    return;
+  }
+
   const currentPath = window.location.pathname;
 
   // Check if we are on the "My Notes" page
-  if (currentPath.includes('SavedNotes.html') && userId) {
-    fetchSavedNotes(userId);
+  if (currentPath.includes('SavedNotes.html')) {
+    fetchSavedNotes(Number(userId));
   }
 });
 
@@ -19,7 +26,7 @@ const fetchSavedNotes = async (user_id: number) => {
     const savedNotes = await response.json();
     console.log('Fetched saved notes:', savedNotes);
 
-    savedNotes.forEach((savedNote: { saved_notes_id: number; topic: string; upload_date: string; subject_name: string; username: string;}) => {
+    savedNotes.forEach((savedNote: { saved_notes_id: number; topic: string; upload_date: string; subject_name: string; username: string }) => {
       const noteElement = document.createElement('div');
       noteElement.className = 'note';
       //Add Design of Notes here.

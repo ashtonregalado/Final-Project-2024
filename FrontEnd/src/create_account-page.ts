@@ -61,7 +61,7 @@ signupButton.addEventListener('click', async () => {
     if (response.ok) {
       const newAccount = await response.json();
       console.log('Account added', newAccount);
-      localStorage.setItem('userID', newAccount.userId);
+      localStorage.setItem(`${newAccount.email}`, newAccount.userId);
       alert(`Account created successfully! Welcome, ${newAccount.userName}.`);
       // Clear input fields
       usernameInput.value = '';

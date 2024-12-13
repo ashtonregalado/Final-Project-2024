@@ -102,10 +102,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const subject = subjectInput.value;
     // const year = (document.getElementById('year') as HTMLInputElement).value;
     // const subject = (document.getElementById('subject_input') as HTMLInputElement).value;
-    const topic = (document.getElementById('topic_input') as HTMLInputElement).value;
-    const fileInput = (document.getElementById('file_upload') as HTMLInputElement).files[0];
+    const topicInput = document.getElementById('topic_input') as HTMLInputElement;
+    const fileInput = document.getElementById('file_upload') as HTMLInputElement;
 
-    if (!year || !subject || !topic || !fileInput) {
+    if (!topicInput || !fileInput) {
+      alert('Please complete all fields before submitting.');
+      return;
+    }
+
+    const topic = topicInput.value;
+    const file = fileInput.files ? fileInput.files[0] : null;
+
+    if (!year || !subject || !topic || !file) {
       alert('Please complete all fields before submitting.');
       return;
     }
@@ -128,12 +136,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Format the date as YYYY-MM-DD
       const uploadDate = currentDate.toISOString().split('T')[0]; // Outputs: 'YYYY-MM-DD'
-      const userId = localStorage.getItem('userID');
+      const logged_account = localStorage.getItem('logged-email');
+      const userId = logged_account ? localStorage.getItem(logged_account) : null;
+
+      if (!userId) {
+        console.error('User ID not found. Please log in.');
+        return;
+      }
+
       const formData = new FormData();
       formData.append('topic', topic);
-      formData.append('filepath', fileInput);
+      formData.append('filepath', file);
       formData.append('upload_date', uploadDate);
-      formData.append('user_id', String(userId));
+      formData.append('user_id', userId);
       formData.append('yearlevel_id', yearLevelId);
       formData.append('subject_id', subjectId);
 

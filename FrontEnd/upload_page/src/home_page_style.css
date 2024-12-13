@@ -400,16 +400,15 @@ strong {
 }
 
 .date_holder {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: light;
   background-color: #ffffff;
   font-size: 10px;
   height: 1vh;
 }
 
-
 .date_cont {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: light;
   font-size: 10px;
   background-color: rgb(255, 255, 255);
@@ -433,7 +432,3 @@ strong {
   margin: 0; /* Removes default margin */
   padding: 0; /* Removes default padding */
 }
-
-
-
-
